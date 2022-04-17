@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { TextField, Button, Input, FormLabel } from "@mui/material";
-import "./App.css";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
-import Select from "react-select";
+//import Select from "react-select";
+import "./App.css";
+
 const Punchin = () => {
   const [brokersName, setBrokersName] = useState("");
   const [brokersPhone, setBrokersPhone] = useState("");
@@ -26,48 +27,38 @@ const Punchin = () => {
   const [recieverZipCode, setRecieverZipCode] = useState("");
   const [recieverCountry, setRecieverCountry] = useState("United States");
   const [carrierRate, setCarrierRate] = useState("");
-  const [carrierNetPay, setCarrierNetPay] = useState("");
+  const [carrierFee, setCarrierFee] = useState("");
+  //  const [selectedOption, setSelectedOption] = useState("");
+  const [netPay,setNetPay] = useState("")
   useEffect(() => {
     document.title = `Load#${loadNumber}`;
   }, [loadNumber]);
 
-  const netPayment = (carrierRate) => {
-    let netPay;
-    if (chargeOptions[0].value === 0) {
-      
-      netPay = carrierRate;
-      setCarrierNetPay(netPay);
-      return carrierNetPay;
+  /*const chargeOptions = [
+    { value: 0, label: "Factoring" },
+    { value: 3.5, label: "3-5 Buisness Days" },
+    { value: 5, label: "Same Day" },
+  ];
+  function handleInputChange(selectedOption) {
+    setSelectedOption({ selectedOption });
+    console.log(selectedOption)
     }
-    console.log("Net Pay", netPay);
-    if (chargeOptions[1].value === 3.5) {
-      netPay = carrierRate - (carrierRate * 3.5) / 100;
-      setCarrierNetPay(netPay);
-      return carrierNetPay;
-    }
-    if (chargeOptions[2].value === 5) {
-      netPay = carrierRate - (carrierRate * 5) / 100;
-      setCarrierNetPay(netPay);
-      return carrierNetPay;
-    } else console.log("!!!");
-  };
+   */ 
 
-  useEffect(() => {
-    console.log(carrierNetPay);
-  }, [carrierNetPay]);
+  function NetPayCalculator(){
+    let x = carrierRate - (carrierRate*carrierFee/100)
+    setNetPay(x);
+    return (
+      <div>
+        <TextField label="Net Pay" value={netPay}/>
+      </div>
+    )
+    }
 
   const HandleSubmit = (e) => {
     e.preventDefault();
     console.log(brokersName, brokersPhone, brokersEmail, loadNumber, date);
   };
-
-  const chargeOptions = [
-    { value: 0, label: "Factoring" },
-    { value: 3.5, label: "3-5 Buisness Days" },
-    { value: 5, label: "Same Day" },
-  ];
-
-  console.log();
 
   return (
     <div style={{ backgroundColor: "red" }}>
@@ -200,9 +191,23 @@ const Punchin = () => {
               value={carrierRate}
               onChange={(e) => setCarrierRate(e.target.value)}
             />
-            <Select options={chargeOptions} />
-            <TextField value={carrierNetPay} />
-          </div>
+            {/*<Select
+              options={chargeOptions}
+              value={selectedOption}
+              onChange={handleInputChange}
+            />
+            */}
+              <TextField
+              label="Carrier pay fee"
+              required
+              multiline
+              value={carrierFee}
+              onChange={(e) => setCarrierFee(e.target.value)}
+            /> 
+            </div>
+            <div style={{padding:"30px"}}>
+            <NetPayCalculator/>
+            </div>
           <div className="data-selector">
             <div>
               <FormLabel color="primary">Earliest time for pick up</FormLabel>
@@ -293,4 +298,5 @@ const Punchin = () => {
     </div>
   );
 };
+
 export default Punchin;

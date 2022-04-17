@@ -5,11 +5,9 @@ const Header = () => {
     <div className="main-header">
       <header>
         <div className="logo-block">
-          <img alt="" src="Static/steelerlogo.png" width="50px" height="50px"/>
-        </div>
+{ //         <img alt="" src="Static/steelerlogo.png" width="50px" height="50px"/>
+}        </div>
         <div className="nav-right-side">
-          <a>Branch</a>
-          <a>User Name</a>
         </div>
       </header>
     </div>
