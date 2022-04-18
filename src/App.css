@@ -1,14 +1,7 @@
 .login-form{
-  margin:50px 0px; padding:0px;
+    margin:50px 0px; padding:0px;
     text-align:center;
     align:center;
-  }
-
-  .main-header{
-    background-image:  linear-gradient(to top ,aqua,blue);
-    width:100%;
-    min-width: auto;
-    height: 80px;
   }
   .shipper-info{
     margin-top:40px;
@@ -17,18 +10,20 @@
   .main-reg{
     display: 'flex';
     text-align:center;
-    background-color: aquamarine;
+    background-color: white;
     background-size: 100%;
+    border: 2px grey solid;
+    border-radius: 5px;
   }
   .form-carrier{
     display: 'flex';
-    margin-top:40px;
+    margin-top:45px;
   }
   .form-broker{
     display: 'flex';
-    margin-top:40px;
+    margin-top:45px;
   }
   .data-selector{
     display: 'flex';
-    padding-bottom:40px;
+    padding-bottom:45px;
   }
