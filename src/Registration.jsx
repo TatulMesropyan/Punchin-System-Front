@@ -1,55 +1,58 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextField, Button, Typography } from "@mui/material";
 import "./App.css";
 
 const Registration = () => {
-  const [newUserName, setNewUserName] = useState("")
-  const [newUserSurname, setNewUserSurname] = useState("")
-  const [newUserEmail,setNewUserEmail] = useState("")
-  const [newUserPassword,setNewUserPassword] = useState("")
-  const [newPasswordConfirm,setNewPasswordConfirm] = useState("")
+  const [newUserName, setNewUserName] = useState("");
+  const [newUserSurname, setNewUserSurname] = useState("");
+  const [newUserEmail, setNewUserEmail] = useState("");
+  const [newUserPassword, setNewUserPassword] = useState("");
+  const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
   const [isError, setIsError] = useState("");
-  const [newUser,setNewUser] = useState({
-    name:"",
-    surname:"",
-    email:"",
-    password:"",
-    passChecker:""
-  })
-
+  /*const [newUser, setNewUser] = useState({
+    name: "",
+    surname: "",
+    email: "",
+    password: "",
+    passChecker: "",
+  });
+  */
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Name",newUserName)
-    console.log("Surname",newUserSurname)
-    console.log("Email",newUserEmail)
-    console.log("Password",newUserPassword)
-    console.log("Pass Checker",newPasswordConfirm)
   };
   const handleName = (e) => {
     setNewUserName(e.target.value);
-  }
+  };
   const handleSurname = (e) => {
-    setNewUserSurname(e.target.value)
-    };
+    setNewUserSurname(e.target.value);
+  };
   const handleEmail = (e) => {
-    setNewUserEmail(e.target.value)
+    setNewUserEmail(e.target.value);
   };
   const handlePassword = (e) => {
-    setNewUserPassword(e.target.value)    
+    setNewUserPassword(e.target.value);
   };
   const handlePassChecker = (e) => {
-    e.preventDefault();
-    setNewPasswordConfirm(e.target.value)
-    // console.log("Pass Checker",newPasswordConfirm)
-    // console.log("Password",newUserPassword)
+    setNewPasswordConfirm(e.target.value);
+  };
+  useEffect(() => {
     if (newUserPassword !== newPasswordConfirm) {
       setIsError("Passwords didnt match");
-      console.log("Passwords didnt match");
     } else {
-      setIsError("Passords is ok");
+      setIsError("");
     }
+  }, [newUserPassword, newPasswordConfirm]);
+
+  const handleClose = (e) => {
+    e.preventDefault();
+    console.log(
+      newUserName,
+      newUserSurname,
+      newUserEmail,
+      newPasswordConfirm,
+      newUserPassword
+    );
   };
-  
   return (
     <div className="register-form">
       <Typography variant="h6" noWrap component="div">
@@ -100,11 +103,13 @@ const Registration = () => {
           onChange={handlePassChecker}
         />
       </div>
-      <div style={{ padding: "15px" }}>{isError}</div>
+      <div style={{ paddingBottom:"15px",color:"red" }}>{isError}</div>
       <Button variant="contained" onClick={handleSubmit}>
         Submit
       </Button>
-      <Button onClick={""}>Cancel</Button>
+      <Button onClick={(e) => handleClose(e)}>
+        Cancel
+      </Button>
     </div>
   );
 };
