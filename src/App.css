@@ -10,6 +10,7 @@
   .main-reg{
     display: 'flex';
     text-align:center;
+    min-height: 650px;
     background-color: white;
     background-size: 100%;
     border: 2px grey solid;
@@ -26,4 +27,18 @@
   .data-selector{
     display: 'flex';
     padding-bottom:45px;
+  }
+  .login-field{
+    padding:10px;
+  }
+  .register-form{
+    display: 'flex';
+    align-items: center;
+    text-align:center;
+    min-height: 650px;
+    background-color: white;
+    background-size: 100%;
+    border: 2px grey solid;
+    border-radius: 5px;
+    padding-top:50px;
   }

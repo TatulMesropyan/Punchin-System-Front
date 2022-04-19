@@ -17,7 +17,7 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="login-form">
+    <div className="login-form register">
       <h2>Please Enter Your Credentials</h2>
       <div className="user-box">
         <Avatar></Avatar>
