@@ -84,7 +84,7 @@ const Punchin = () => {
   }
 
   const HandleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
     console.log(
       brokersName,
       brokersEmail,
@@ -288,7 +288,7 @@ const Punchin = () => {
                 <RegionDropdown
                   country={recieverCountry}
                   value={recieverState}
-                  onChange={(e) => setRecieverState(e)}
+                  onChange={(e) => setRecieverState(e.target.value)}
                 />
               </div>
               <TextField
