@@ -111,7 +111,7 @@ const Punchin = () => {
     );
   }
 
-  const HandleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(
       brokersName,
@@ -129,7 +129,7 @@ const Punchin = () => {
 
   return (
     <div>
-      <form onSubmit={HandleSubmit} className="main-reg">
+      <form onSubmit={handleSubmit} className="main-reg">
         <div className="data-selector">
           <div>
             <label>
@@ -376,7 +376,7 @@ const Punchin = () => {
               variant="contained"
               color="primary"
               style={{ marginTop: 10 }}
-              onClick={HandleSubmit}
+              onClick={handleSubmit}
             >
               Submit
             </Button>
