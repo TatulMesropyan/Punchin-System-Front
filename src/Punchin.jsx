@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { TextField, Button, Input, FormLabel } from "@mui/material";
-import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
+// import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 import "./App.css";
 
 const Punchin = () => {
+
+  const [brokerData, setBrokerData] = useState({
+
+  })
+
+  const [shipperData, setShipperData] = useState({
+    
+  })
+
   const [brokersName, setBrokersName] = useState("");
   const [brokersPhone, setBrokersPhone] = useState("");
   const [brokersEmail, setBrokersEmail] = useState("");
@@ -68,6 +77,9 @@ const Punchin = () => {
   }, [carrierRate]);
 
   useEffect(() => {
+    
+    // look through MaterialUI TextField / Input API documentation and use its native error handling for styling
+
     let carrierFeeChecker = document.getElementById("fee");
     if (/[0-9]/.test(carrierFee)) {
       carrierFeeChecker.style.color = "black";
@@ -99,7 +111,7 @@ const Punchin = () => {
     );
   }
 
-  const HandleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(
       brokersName,
@@ -117,7 +129,7 @@ const Punchin = () => {
 
   return (
     <div>
-      <form onSubmit={HandleSubmit} className="main-reg">
+      <form onSubmit={handleSubmit} className="main-reg">
         <div className="data-selector">
           <div>
             <label>
@@ -250,7 +262,7 @@ const Punchin = () => {
                 onChange={(e) => setShipperAddress(e.target.value)}
               />
             </div>
-            <div className="shipper-region-selector">
+            {/* <div className="shipper-region-selector">
               <CountryDropdown
                 value={shipperCountry}
                 onChange={(e) => setShipperCountry(e.target.value)}
@@ -260,7 +272,7 @@ const Punchin = () => {
                 value={shipperState}
                 onChange={(e) => setShipperState(e.target.value)}
               />
-            </div>
+            </div> */}
             <div style={{ paddingTop: "15px" }}>
               <TextField
                 label="Shipper's City"
@@ -313,7 +325,7 @@ const Punchin = () => {
               />
             </div>
             <div>
-              <div className="region-selector">
+              {/* <div className="region-selector">
                 <CountryDropdown
                   value={recieverCountry}
                   onChange={(e) => setRecieverCountry(e)}
@@ -323,7 +335,7 @@ const Punchin = () => {
                   value={recieverState}
                   onChange={(e) => setRecieverState(e.target.value)}
                 />
-              </div>
+              </div> */}
               <div style={{ paddingTop: "15px" }}>
                 <TextField
                   label="Reciever's City"
@@ -364,7 +376,7 @@ const Punchin = () => {
               variant="contained"
               color="primary"
               style={{ marginTop: 10 }}
-              onClick={HandleSubmit}
+              onClick={handleSubmit}
             >
               Submit
             </Button>
