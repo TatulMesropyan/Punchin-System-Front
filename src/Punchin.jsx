@@ -4,6 +4,15 @@ import { TextField, Button, Input, FormLabel } from "@mui/material";
 import "./App.css";
 
 const Punchin = () => {
+
+  const [brokerData, setBrokerData] = useState({
+
+  })
+
+  const [shipperData, setShipperData] = useState({
+    
+  })
+
   const [brokersName, setBrokersName] = useState("");
   const [brokersPhone, setBrokersPhone] = useState("");
   const [brokersEmail, setBrokersEmail] = useState("");
