@@ -77,6 +77,9 @@ const Punchin = () => {
   }, [carrierRate]);
 
   useEffect(() => {
+    
+    // look through MaterialUI TextField / Input API documentation and use its native error handling for styling
+
     let carrierFeeChecker = document.getElementById("fee");
     if (/[0-9]/.test(carrierFee)) {
       carrierFeeChecker.style.color = "black";
