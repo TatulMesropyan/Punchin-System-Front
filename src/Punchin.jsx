@@ -32,25 +32,25 @@ const Punchin = () => {
   const [feeError, setFeeError] = useState("");
   const [loadNumberError, setLoadNumberError] = useState("");
   const [pickUp, setPickUp] = useState({
-    time: "",
-    date: "",
+    early: "",
+    late: "",
   });
   const [delivery, setDelivery] = useState({
-    time: "",
-    date: "",
+    early: "",
+    late: "",
   });
-  const handleDeliveryTime = (e) => {
-    setDelivery({ time: e.target.value });
+  const handleEarlyDelivery = (e) => {
+    setDelivery({ early: e.target.value });
   };
-  const handleDeliveryDate = (e) => {
-    setDelivery({ date: e.target.value });
+  const handleLateDelivery = (e) => {
+    setDelivery({ late: e.target.value });
   };
 
-  const handlePickTime = (e) => {
-    setPickUp({ time: e.target.value });
+  const handleEarlyPickTime = (e) => {
+    setPickUp({ early: e.target.value });
   };
-  const handlePickDate = (e) => {
-    setPickUp({ date: e.target.value });
+  const handleLatePickDate = (e) => {
+    setPickUp({ late: e.target.value });
   };
   useEffect(() => {
     document.title = `Load#${loadNumber}`;
@@ -94,7 +94,7 @@ const Punchin = () => {
     setNetPay(x);
     return (
       <div>
-        <TextField label="Net Pay" value={netPay} />
+        <TextField label="Net Pay" value={"$"+netPay} />
       </div>
     );
   }
@@ -143,9 +143,7 @@ const Punchin = () => {
               value={loadNumber}
               onChange={(e) => setLoadNumber(e.target.value)}
             />
-            <div style={{ color: "red", fontSize: "10px" }}>
-              {loadNumberError}
-            </div>
+              <p style={{ color: "red", fontSize: "10px" }}>{loadNumberError}</p>
           </div>
           <div className="form-broker">
             <TextField
@@ -211,12 +209,6 @@ const Punchin = () => {
                 id="rate"
                 onChange={(e) => setCarrierRate(e.target.value)}
               />
-              {/*<Select
-              options={chargeOptions}
-              value={selectedOption}
-              onChange={handleInputChange}
-            />
-            */}
               <TextField
                 label="Carrier pay fee"
                 required
@@ -225,10 +217,8 @@ const Punchin = () => {
                 onChange={(e) => setCarrierFee(e.target.value)}
               />
             </div>
-            <div style={{ color: "red", fontSize: "10px" }}>
-              <span style={{ paddingRight: "30px" }}> {rateError}</span>
-              <span style={{ paddingLeft: "30px" }}> {feeError}</span>
-            </div>
+              <span style={{ paddingRight: "30px",color: "red", fontSize: "10px" }}> {rateError}</span>
+              <span style={{ paddingLeft: "30px" ,color: "red", fontSize: "10px"}}> {feeError}</span>
           </div>
           <div style={{ paddingTop: "45px" }}>
             <NetPayCalculator />
@@ -283,15 +273,13 @@ const Punchin = () => {
             <div>
               <FormLabel color="primary">Earliest time for pick up</FormLabel>
               <div>
-                <Input type="date" onChange={handlePickDate} />
-                <Input type="time" onChange={handlePickTime} />
+                <Input type="datetime-local" value={pickUp.early} onChange={handleEarlyPickTime} />
               </div>
             </div>
             <div style={{ paddingTop: "15px" }}>
               <FormLabel>Latest time for pick up</FormLabel>
               <div>
-                <Input type="date" />
-                <Input type="time" />
+                <Input type="datetime-local"  value={pickUp.late} onChange={handleLatePickDate}/>
               </div>
             </div>
           </div>
@@ -346,24 +334,23 @@ const Punchin = () => {
             <div>
               <FormLabel color="primary">Earliest time for delivery</FormLabel>
               <div>
-                <Input type="date" onChange={handleDeliveryDate} />
-                <Input type="time" onChange={handleDeliveryTime} />
+                <Input type="datetime-local" value={delivery.early} onChange={handleEarlyDelivery} />
               </div>
             </div>
             <div style={{ paddingTop: "15px" }}>
               <FormLabel>Latest time for delivery</FormLabel>
               <div>
-                <Input type="date" />
-                <Input type="time" />
+                <Input type="datetime-local" value={delivery.late} onChange={handleLateDelivery} />
               </div>
             </div>
           </div>
-          <div className="button-submit">
+          <div className="button-submit"
+           style={{ paddingTop:"30px" , paddingBottom:"30px" }}
+           >
             <Button
               type="submit"
               variant="contained"
               color="primary"
-              style={{ marginTop: 10 }}
               onClick={HandleSubmit}
             >
               Submit

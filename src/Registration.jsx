@@ -106,10 +106,12 @@ const Registration = () => {
           onChange={handlePassword}
         />
       </div>
+      <p style={{padding:"5px"}} >
       <Button variant="outlined" onClick={showPassword}>
         Show Password
       </Button>
-      <div className="login-field">
+      </p>
+      <div style={{paddingBottom:"0px"}}className="login-field">
         <TextField
           label="Repeat Password"
           variant="filled"
@@ -120,8 +122,8 @@ const Registration = () => {
           onChange={handlePassChecker}
         />
       </div>
-      <div style={{ paddingBottom: "15px", color: "red" }}>{isError}</div>
-      <Button variant="contained" onClick={handleSubmit}>
+      <div style={{ paddingBottom: "15px", color: "red" ,fontSize:"12px"}}>{isError}</div>
+      <Button variant="contained" onSubmit={handleSubmit}>
         Submit
       </Button>
       <Button onClick={(e) => handleClose(e)}>Cancel</Button>

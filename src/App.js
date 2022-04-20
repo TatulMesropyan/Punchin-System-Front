@@ -9,6 +9,8 @@ function App() {
    <>
    <Header/>
    <Punchin/>
+   <Registration/>
+   <LoginPage/>
    </>
   );
 }

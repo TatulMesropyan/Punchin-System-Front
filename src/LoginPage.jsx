@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Avatar, Button, Container, Input, InputLabel } from "@mui/material";
+import { Button, Container, Input, InputLabel } from "@mui/material";
 import "./App.css";
 const LoginPage = () => {
   const handleSubmit = (e) => {
