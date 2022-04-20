@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { TextField, Button, Input, FormLabel } from "@mui/material";
-import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
+// import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 import "./App.css";
 
 const Punchin = () => {
@@ -250,7 +250,7 @@ const Punchin = () => {
                 onChange={(e) => setShipperAddress(e.target.value)}
               />
             </div>
-            <div className="shipper-region-selector">
+            {/* <div className="shipper-region-selector">
               <CountryDropdown
                 value={shipperCountry}
                 onChange={(e) => setShipperCountry(e.target.value)}
@@ -260,7 +260,7 @@ const Punchin = () => {
                 value={shipperState}
                 onChange={(e) => setShipperState(e.target.value)}
               />
-            </div>
+            </div> */}
             <div style={{ paddingTop: "15px" }}>
               <TextField
                 label="Shipper's City"
@@ -313,7 +313,7 @@ const Punchin = () => {
               />
             </div>
             <div>
-              <div className="region-selector">
+              {/* <div className="region-selector">
                 <CountryDropdown
                   value={recieverCountry}
                   onChange={(e) => setRecieverCountry(e)}
@@ -323,7 +323,7 @@ const Punchin = () => {
                   value={recieverState}
                   onChange={(e) => setRecieverState(e.target.value)}
                 />
-              </div>
+              </div> */}
               <div style={{ paddingTop: "15px" }}>
                 <TextField
                   label="Reciever's City"
