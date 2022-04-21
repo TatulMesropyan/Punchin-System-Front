@@ -1,131 +1,122 @@
 import React, { useEffect, useState } from "react";
 import { TextField, Button, Input, FormLabel } from "@mui/material";
 // import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
+//import DateTimePicker from '@mui/material';
 import "./App.css";
 
 const Punchin = () => {
 
-  const [brokerData, setBrokerData] = useState({
-
-  })
-
-  const [shipperData, setShipperData] = useState({
-    
-  })
-
-  const [brokersName, setBrokersName] = useState("");
-  const [brokersPhone, setBrokersPhone] = useState("");
-  const [brokersEmail, setBrokersEmail] = useState("");
-  const [loadNumber, setLoadNumber] = useState("");
   const [date, setDate] = useState("");
-  const [carriersName, setcarriersName] = useState("");
-  const [carriersPhone, setCarriersPhone] = useState("");
-  const [carriersEmail, setCarriersEmail] = useState("");
-  const [dispatchName, setDispatchName] = useState("");
-  const [shipperName, setShipperName] = useState("");
-  const [shipperAddress, setShipperAddress] = useState("");
-  const [shipperCity, setShipperCity] = useState("");
-  const [shipperState, setShipperState] = useState("");
-  const [shipperCountry, setShipperCountry] = useState("United States");
-  const [shipperZipCode, setShipperZipCode] = useState("");
-  const [recieverName, setRecieverName] = useState("");
-  const [recieverAddress, setRecieverAddress] = useState("");
-  const [recieverCity, setRecieverCity] = useState("");
-  const [recieverState, setRecieverState] = useState("");
-  const [recieverZipCode, setRecieverZipCode] = useState("");
-  const [recieverCountry, setRecieverCountry] = useState("United States");
+  const [loadNumber, setLoadNumber] = useState("");
+  const [loadNumberError,setLoadNumberError] = useState("")
+  const [feeError,setFeeError] = useState("")
+  const [rateError,setRateError] = useState("")
   const [carrierRate, setCarrierRate] = useState("");
   const [carrierFee, setCarrierFee] = useState("");
-  const [netPay, setNetPay] = useState("");
-  const [rateError, setRateError] = useState("");
-  const [feeError, setFeeError] = useState("");
-  const [loadNumberError, setLoadNumberError] = useState("");
-  const [pickUp, setPickUp] = useState({
-    time: "",
-    date: "",
+  const [carrierNetPay,setCarrierNetPay] = useState("")
+  const [brokerData, setBrokerData] = useState({
+    dispatchName: "",
+    phone: "",
+    email: "",
   });
-  const [delivery, setDelivery] = useState({
-    time: "",
-    date: "",
+
+  const [carrierData, setCarrierData] = useState({
+    companyName: "",
+    email: "",
+    phone: "",
+    dispatchName: "",
   });
-  const handleDeliveryTime = (e) => {
-    setDelivery({ time: e.target.value });
-  };
-  const handleDeliveryDate = (e) => {
-    setDelivery({ date: e.target.value });
+
+  const [shipperData, setShipperData] = useState({
+    warehouseName: "",
+    address: "",
+    city: "",
+    state: "",
+    country: "United States",
+    zipcode: "",
+    earliestTime: "",
+    latestTime: "",
+  });
+  const [receiverData, setReceiverData] = useState({
+    warehouseName: "",
+    address: "",
+    city: "",
+    state: "",
+    country: "United States",
+    zipcode: "",
+    earliestTime: "",
+    latestTime: "",
+  });
+
+  const handleReceiverChange = (e) => {
+    const { name, value } = e.target;
+    setReceiverData({
+      ...receiverData,
+      [name]: value,
+    });
   };
 
-  const handlePickTime = (e) => {
-    setPickUp({ time: e.target.value });
+  const handleShipperChange = (e) => {
+    const { name, value } = e.target;
+    setShipperData({
+      ...shipperData,
+      [name]: value,
+    });
   };
-  const handlePickDate = (e) => {
-    setPickUp({ date: e.target.value });
+  
+  const handleCarrierChange = (e) => {
+    const { name, value } = e.target;
+    setCarrierData({
+      ...carrierData,
+      [name]: value,
+    });
   };
-  useEffect(() => {
-    document.title = `Load#${loadNumber}`;
-  }, [loadNumber]);
-
-  useEffect(() => {
-    let carrierRateChecker = document.getElementById("rate");
-    if (/[0-9]/.test(carrierRate)) {
-      carrierRateChecker.style.color = "black";
-      setRateError("");
-    } else {
-      carrierRateChecker.style.color = "red";
-      setRateError("Rate can only be number!");
+  const handleBrokerChange = (e) => {
+    const { name, value } = e.target;
+    setBrokerData({
+      ...brokerData,
+      [name]: value,
+    });
+  };
+  
+   useEffect(() => {
+    if (!/[0-9]/.test(loadNumber)){
+      setLoadNumberError("Must Contain Number!");
     }
-  }, [carrierRate]);
-
-  useEffect(() => {
-    
-    // look through MaterialUI TextField / Input API documentation and use its native error handling for styling
-
-    let carrierFeeChecker = document.getElementById("fee");
-    if (/[0-9]/.test(carrierFee)) {
-      carrierFeeChecker.style.color = "black";
-      setFeeError("");
-    } else {
-      carrierFeeChecker.style.color = "red";
-      setFeeError("Fee can only be number!");
+    if(/[0-9]/.test(loadNumber)){
+      setLoadNumberError("")
     }
-  }, [carrierFee]);
-
-  useEffect(() => {
-    let numChecker = document.getElementById("loadNumber");
-    if (/[0-9]/.test(loadNumber)) {
-      numChecker.style.color = "black";
-      setLoadNumberError("");
-    } else {
-      numChecker.style.color = "red";
-      setLoadNumberError("LoadNumber can only be number!");
+    if(!/[0-9]/.test(carrierFee)){
+      setFeeError("Must Contain Number!")
     }
-  }, [loadNumber]);
+    if(/[0-9]/.test(carrierFee)){
+      setFeeError("")
+    }
+    if(!/[0-9]/.test(carrierRate)){
+      setRateError("Must Contain Number!")
+    }
+    if (/[0-9]/.test(carrierRate)){
+      setRateError("")
+    }
+  }, [loadNumber,carrierFee,carrierRate,]);
+
 
   function NetPayCalculator() {
     let x = carrierRate - (carrierRate * carrierFee) / 100;
-    setNetPay(x);
+    setCarrierNetPay(x);
     return (
       <div>
-        <TextField label="Net Pay" value={netPay} />
+        <TextField label="Net Pay" value={carrierNetPay} />
       </div>
     );
   }
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(
-      brokersName,
-      brokersEmail,
-      brokersPhone,
-      loadNumber,
-      carriersName,
-      dispatchName,
-      carriersPhone,
-      carriersEmail,
-      pickUp,
-      delivery
-    );
   };
+
+  useEffect(() => {
+    document.title = loadNumber;
+  },[loadNumber])
 
   return (
     <div>
@@ -137,11 +128,14 @@ const Punchin = () => {
             </label>
           </div>
           <div style={{ margin: 25 }}>
+            {
+              //Data-time pickers not working,should install new version
+            }
             <Input
               label="Creating Date"
               variant="outlined"
               required
-              type="date"
+              type="data-time"
               value={date}
               onChange={(e) => setDate(e.target.value)}
             />
@@ -151,35 +145,36 @@ const Punchin = () => {
               label="Load Number"
               required
               variant="outlined"
-              id="loadNumber"
+              helperText={loadNumberError}
+              error={loadNumberError}
               value={loadNumber}
               onChange={(e) => setLoadNumber(e.target.value)}
             />
-            <div style={{ color: "red", fontSize: "10px" }}>
-              {loadNumberError}
-            </div>
           </div>
           <div className="form-broker">
             <TextField
               label="Broker's Name"
               variant="outlined"
-              value={brokersName}
-              onChange={(e) => setBrokersName(e.target.value)}
+              name="dispatchName"
+              value={brokerData.dispatchName}
+              onChange={handleBrokerChange}
             />
             <TextField
               label="Broker's Phone"
               variant="outlined"
               required
-              value={brokersPhone}
-              onChange={(e) => setBrokersPhone(e.target.value)}
+              name="phone"
+              value={brokerData.phone}
+              onChange={handleBrokerChange}
             />
             <TextField
               label="Broker's Email"
               type="email"
+              name="email"
               required
               variant="outlined"
-              value={brokersEmail}
-              onChange={(e) => setBrokersEmail(e.target.value)}
+              value={brokerData.email}
+              onChange={handleBrokerChange}
             />
           </div>
           <div className="form-carrier">
@@ -187,30 +182,34 @@ const Punchin = () => {
               label="Carrier's Company Name"
               variant="outlined"
               required
-              value={carriersName}
-              onChange={(e) => setcarriersName(e.target.value)}
+              name="companyName"
+              value={carrierData.companyName}
+              onChange={handleCarrierChange}
             />
             <TextField
               label="Carrier's Phone"
               variant="outlined"
               required
-              value={carriersPhone}
-              onChange={(e) => setCarriersPhone(e.target.value)}
+              name="phone"
+              value={carrierData.phone}
+              onChange={handleCarrierChange}
             />
             <TextField
               label="Carrier's Email"
               type="email"
               required
+              name="email"
               variant="outlined"
-              value={carriersEmail}
-              onChange={(e) => setCarriersEmail(e.target.value)}
+              value={carrierData.email}
+              onChange={handleCarrierChange}
             />
             <TextField
               label="Dispatch Name"
               variant="outlined"
               required
-              value={dispatchName}
-              onChange={(e) => setDispatchName(e.target.value)}
+              name="dispatchName"
+              value={carrierData.dispatchName}
+              onChange={handleCarrierChange}
             />
           </div>
           <div style={{ paddingTop: "45px" }}>
@@ -219,9 +218,10 @@ const Punchin = () => {
                 label="Carrier's Rate"
                 variant="outlined"
                 required
+                helperText={rateError}
+                error={rateError}
                 value={carrierRate}
-                id="rate"
-                onChange={(e) => setCarrierRate(e.target.value)}
+                onChange={(e)=>setCarrierRate(e.target.value)}
               />
               {/*<Select
               options={chargeOptions}
@@ -232,14 +232,12 @@ const Punchin = () => {
               <TextField
                 label="Carrier pay fee"
                 required
+                helperText={feeError}
+                error={feeError}
                 id="fee"
                 value={carrierFee}
-                onChange={(e) => setCarrierFee(e.target.value)}
+                onChange={(e)=>setCarrierFee(e.target.value)}
               />
-            </div>
-            <div style={{ color: "red", fontSize: "10px" }}>
-              <span style={{ paddingRight: "30px" }}> {rateError}</span>
-              <span style={{ paddingLeft: "30px" }}> {feeError}</span>
             </div>
           </div>
           <div style={{ paddingTop: "45px" }}>
@@ -251,15 +249,17 @@ const Punchin = () => {
                 label="Shipper's Name"
                 required
                 multiline
-                value={shipperName}
-                onChange={(e) => setShipperName(e.target.value)}
+                name="warehouseName"
+                value={shipperData.warehouseName}
+                onChange={handleShipperChange}
               />
               <TextField
                 label="Shipper's Address"
                 required
                 multiline
-                value={shipperAddress}
-                onChange={(e) => setShipperAddress(e.target.value)}
+                name="address"
+                value={shipperData.address}
+                onChange={handleShipperChange}
               />
             </div>
             {/* <div className="shipper-region-selector">
@@ -278,16 +278,18 @@ const Punchin = () => {
                 label="Shipper's City"
                 required
                 multiline
-                value={shipperCity}
-                onChange={(e) => setShipperCity(e.target.value)}
+                name="city"
+                value={shipperData.city}
+                onChange={handleShipperChange}
               />
 
               <TextField
                 label="Shipper's ZipCode"
                 required
+                name="zipcode"
                 multiline
-                value={shipperZipCode}
-                onChange={(e) => setShipperZipCode(e.target.value)}
+                value={shipperData.zipcode}
+                onChange={handleShipperChange}
               />
             </div>
           </div>
@@ -295,15 +297,26 @@ const Punchin = () => {
             <div>
               <FormLabel color="primary">Earliest time for pick up</FormLabel>
               <div>
-                <Input type="date" onChange={handlePickDate} />
-                <Input type="time" onChange={handlePickTime} />
+                <Input
+                  type="datetime"
+                  name="earliestTime"
+                  value={shipperData.earliestTime}
+                  onChange={handleShipperChange}
+                />
               </div>
+              {
+              //Data-time pickers not working,should install new version
+            }
             </div>
             <div style={{ paddingTop: "15px" }}>
               <FormLabel>Latest time for pick up</FormLabel>
               <div>
-                <Input type="date" />
-                <Input type="time" />
+                <Input
+                  type="datatime-local"
+                  name="latestTime"
+                  value={shipperData.latestTime}
+                  onChange={handleShipperChange}
+                />
               </div>
             </div>
           </div>
@@ -312,16 +325,18 @@ const Punchin = () => {
               <TextField
                 label="Reciever's Name"
                 required
+                name="wareouseName"
                 multiline
-                value={recieverName}
-                onChange={(e) => setRecieverName(e.target.value)}
+                value={receiverData.name}
+                onChange={handleReceiverChange}
               />
               <TextField
                 label="Reciever's Address"
                 required
                 multiline
-                value={recieverAddress}
-                onChange={(e) => setRecieverAddress(e.target.value)}
+                name="address"
+                value={receiverData.address}
+                onChange={handleReceiverChange}
               />
             </div>
             <div>
@@ -340,16 +355,18 @@ const Punchin = () => {
                 <TextField
                   label="Reciever's City"
                   required
+                  name="city"
                   multiline
-                  value={recieverCity}
-                  onChange={(e) => setRecieverCity(e.target.value)}
+                  value={receiverData.city}
+                  onChange={handleReceiverChange}
                 />
                 <TextField
                   label="Reciever's ZipCode"
                   required
                   multiline
-                  value={recieverZipCode}
-                  onChange={(e) => setRecieverZipCode(e.target.value)}
+                  name="zipcode"
+                  value={receiverData.zipcode}
+                  onChange={handleReceiverChange}
                 />
               </div>
             </div>
@@ -358,15 +375,23 @@ const Punchin = () => {
             <div>
               <FormLabel color="primary">Earliest time for delivery</FormLabel>
               <div>
-                <Input type="date" onChange={handleDeliveryDate} />
-                <Input type="time" onChange={handleDeliveryTime} />
+                <Input
+                  type="datetime"
+                  name="earliestTime"
+                  value={receiverData.earliestTime}
+                  onChange={handleReceiverChange}
+                />
               </div>
             </div>
             <div style={{ paddingTop: "15px" }}>
               <FormLabel>Latest time for delivery</FormLabel>
               <div>
-                <Input type="date" />
-                <Input type="time" />
+                <Input
+                  type="datetime"
+                  name="latestTime"
+                  value={receiverData.latestTime}
+                  onChange={handleReceiverChange}
+                />
               </div>
             </div>
           </div>
