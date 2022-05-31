@@ -1,9 +1,10 @@
 import React from "react";
+import { Grid } from "@mui/material";
 const Dashboard = () =>{
      return(
-          <div>
+          <Grid>
                <h1>PROFFESIONALNIY DASHBOARD</h1>
-          </div>
+          </Grid>
      )
 }
 

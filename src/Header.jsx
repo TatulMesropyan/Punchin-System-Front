@@ -40,7 +40,6 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
           <Typography
             variant="h6"
             noWrap
-            component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
             <img alt="Steelers" src={steelerlogo} width="70px" height="70px"/>
@@ -88,7 +87,6 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
           <Typography
             variant="h6"
             noWrap
-            component="div"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
             LOGO
