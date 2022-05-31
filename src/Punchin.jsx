@@ -1,19 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { TextField, Button, Input, FormLabel } from "@mui/material";
-// import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
-//import DateTimePicker from '@mui/material';
+import {
+  TextField,
+  Box,
+  Button,
+  Input,
+  FormLabel,
+  Grid,
+  Typography,
+} from "@mui/material";
+import { LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
+import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns"
+import {DateTimePicker} from "@mui/x-date-pickers/DateTimePicker"
+import { DatePicker } from "@mui/x-date-pickers";
 import "./App.css";
 
 const Punchin = () => {
-
   const [date, setDate] = useState("");
   const [loadNumber, setLoadNumber] = useState("");
-  const [loadNumberError,setLoadNumberError] = useState("")
-  const [feeError,setFeeError] = useState("")
-  const [rateError,setRateError] = useState("")
+  const [loadNumberError, setLoadNumberError] = useState("");
+  const [feeError, setFeeError] = useState("");
+  const [rateError, setRateError] = useState("");
   const [carrierRate, setCarrierRate] = useState("");
   const [carrierFee, setCarrierFee] = useState("");
-  const [carrierNetPay,setCarrierNetPay] = useState("")
+  const [carrierNetPay, setCarrierNetPay] = useState("");
+  const [shipperEarlyDate, setShipperEarlyDate] = useState("");
+  const [shipperLateDate, setShipperLateDate] = useState("");
+  const [receiverEarlyDate, setReceivEarlyDate] = useState("");
+  const [receiverLateDate, setReceiverLateDate] = useState("");
   const [brokerData, setBrokerData] = useState({
     dispatchName: "",
     phone: "",
@@ -34,8 +47,6 @@ const Punchin = () => {
     state: "",
     country: "United States",
     zipcode: "",
-    earliestTime: "",
-    latestTime: "",
   });
   const [receiverData, setReceiverData] = useState({
     warehouseName: "",
@@ -44,10 +55,7 @@ const Punchin = () => {
     state: "",
     country: "United States",
     zipcode: "",
-    earliestTime: "",
-    latestTime: "",
   });
-
   const handleReceiverChange = (e) => {
     const { name, value } = e.target;
     setReceiverData({
@@ -63,7 +71,7 @@ const Punchin = () => {
       [name]: value,
     });
   };
-  
+
   const handleCarrierChange = (e) => {
     const { name, value } = e.target;
     setCarrierData({
@@ -78,337 +86,288 @@ const Punchin = () => {
       [name]: value,
     });
   };
-  
-   useEffect(() => {
-    if (!/[0-9]/.test(loadNumber)){
+
+  useEffect(() => {
+    if (!/[0-9]/.test(loadNumber)) {
       setLoadNumberError("Must Contain Number!");
     }
-    if(/[0-9]/.test(loadNumber)){
-      setLoadNumberError("")
+    if (/[0-9]/.test(loadNumber)) {
+      setLoadNumberError("");
     }
-    if(!/[0-9]/.test(carrierFee)){
-      setFeeError("Must Contain Number!")
+    if (!/[0-9]/.test(carrierFee)) {
+      setFeeError("Must Contain Number!");
     }
-    if(/[0-9]/.test(carrierFee)){
-      setFeeError("")
+    if (/[0-9]/.test(carrierFee)) {
+      setFeeError("");
     }
-    if(!/[0-9]/.test(carrierRate)){
-      setRateError("Must Contain Number!")
+    if (!/[0-9]/.test(carrierRate)) {
+      setRateError("Must Contain Number!");
     }
-    if (/[0-9]/.test(carrierRate)){
-      setRateError("")
+    if (/[0-9]/.test(carrierRate)) {
+      setRateError("");
     }
-  }, [loadNumber,carrierFee,carrierRate,]);
+  }, [loadNumber, carrierFee, carrierRate]);
 
-
-  function NetPayCalculator() {
+  const NetPayCalculator = () => {
     let x = carrierRate - (carrierRate * carrierFee) / 100;
     setCarrierNetPay(x);
-    return (
-      <div>
-        <TextField label="Net Pay" value={carrierNetPay} />
-      </div>
-    );
-  }
+    return <TextField label="Net Pay" value={carrierNetPay} />;
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
   useEffect(() => {
     document.title = loadNumber;
-  },[loadNumber])
+  }, [loadNumber]);
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="main-reg">
-        <div className="data-selector">
-          <div>
-            <label>
-              <h2>Load Creating Date</h2>
-            </label>
-          </div>
-          <div style={{ margin: 25 }}>
-            {
-              //Data-time pickers not working,should install new version
-            }
-            <Input
+    <Box sx={{ paddingTop: "50px", textAlign: "center" }}>
+      <Grid container xs={12} spacing={2}>
+        <Grid item xs={12}>
+          <Typography variant="h4">Load Creating Date</Typography>
+        </Grid>
+        <Grid xs={12} container spacing={2} pt={2}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
               label="Creating Date"
-              variant="outlined"
+              renderInput={(props) => <TextField {...props} />}
               required
-              type="data-time"
               value={date}
               onChange={(e) => setDate(e.target.value)}
             />
-          </div>
-          <div>
+          </LocalizationProvider>
+          <TextField
+            label="Load Number"
+            required
+            variant="outlined"
+            helperText={loadNumberError}
+            error={loadNumberError && true}
+            value={loadNumber}
+            onChange={(e) => setLoadNumber(e.target.value)}
+          />
+        </Grid>
+        <Grid xs={12} item pt={8}>
+          <Typography variant="h4" align="center">
+            Broker Info
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            label="Broker's Name"
+            variant="outlined"
+            name="dispatchName"
+            value={brokerData.dispatchName}
+            onChange={handleBrokerChange}
+          />
+          <TextField
+            label="Broker's Phone"
+            variant="outlined"
+            required
+            name="phone"
+            value={brokerData.phone}
+            onChange={handleBrokerChange}
+          />
+          <TextField
+            label="Broker's Email"
+            type="email"
+            name="email"
+            required
+            variant="outlined"
+            value={brokerData.email}
+            onChange={handleBrokerChange}
+          />
+        </Grid>
+        <Grid xs={12} item pt={8}>
+          <Typography variant="h4">Carrier Info</Typography>
+        </Grid>
+        <Grid xs={12} md={4} item pt={4}>
+          <TextField
+            label="Carrier's Company Name"
+            variant="outlined"
+            required
+            name="companyName"
+            fullWidth
+            value={carrierData.companyName}
+            onChange={handleCarrierChange}
+          />
+        </Grid>
+        <Grid xs={12} item>
+          <TextField
+            label="Carrier's Phone"
+            variant="outlined"
+            required
+            name="phone"
+            value={carrierData.phone}
+            onChange={handleCarrierChange}
+          />
+          <TextField
+            label="Carrier's Email"
+            type="email"
+            required
+            name="email"
+            variant="outlined"
+            value={carrierData.email}
+            onChange={handleCarrierChange}
+          />
+          <TextField
+            label="Dispatch Name"
+            variant="outlined"
+            required
+            name="dispatchName"
+            value={carrierData.dispatchName}
+            onChange={handleCarrierChange}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            label="Carrier's Rate"
+            variant="outlined"
+            required
+            helperText={rateError}
+            error={rateError}
+            value={carrierRate}
+            onChange={(e) => setCarrierRate(e.target.value)}
+          />
+          <TextField
+            label="Carrier pay fee"
+            required
+            helperText={feeError}
+            error={feeError}
+            id="fee"
+            value={carrierFee}
+            onChange={(e) => setCarrierFee(e.target.value)}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <NetPayCalculator />
+        </Grid>
+        <Grid xs={12} pt={10} item>
+          <Grid xs={12} pb={2} item>
+            <Typography variant="h4" align="center" pb={1}>
+              Shipper Info
+            </Typography>
             <TextField
-              label="Load Number"
+              label="Shipper's Name"
               required
-              variant="outlined"
-              helperText={loadNumberError}
-              error={loadNumberError}
-              value={loadNumber}
-              onChange={(e) => setLoadNumber(e.target.value)}
+              multiline
+              name="warehouseName"
+              value={shipperData.warehouseName}
+              onChange={handleShipperChange}
             />
-          </div>
-          <div className="form-broker">
-            <TextField
-              label="Broker's Name"
-              variant="outlined"
-              name="dispatchName"
-              value={brokerData.dispatchName}
-              onChange={handleBrokerChange}
+          </Grid>
+          <TextField
+            label="Shipper's Address"
+            required
+            multiline
+            name="address"
+            value={shipperData.address}
+            onChange={handleShipperChange}
+          />
+          <TextField
+            label="Shipper's City"
+            required
+            multiline
+            name="city"
+            value={shipperData.city}
+            onChange={handleShipperChange}
+          />
+          <TextField
+            label="Shipper's ZipCode"
+            required
+            name="zipcode"
+            multiline
+            value={shipperData.zipcode}
+            onChange={handleShipperChange}
+          />
+        </Grid>
+        <Grid container textAlign='center' xs={12}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <Grid item xs={6}>
+          <Typography variant="h6">Earliest Time</Typography>
+            <DateTimePicker
+              renderInput={(props) => <TextField {...props} />}
+              value={shipperEarlyDate}
+              onChange={(e) => setShipperEarlyDate(e)}
             />
+            </Grid>
+            <Grid xs={6} item>
+            <Typography variant="h6">Latest Time</Typography>
+            <DateTimePicker
+              renderInput={(props) => <TextField {...props} />}
+              value={shipperLateDate}
+              onChange={(e) => setShipperLateDate(e)}
+            />
+            </Grid>
+          </LocalizationProvider>
+          </Grid>
+          <Grid container xs={12} >
+            <Grid item xs={12} >
             <TextField
-              label="Broker's Phone"
-              variant="outlined"
+              label="Reciever's Name"
               required
-              name="phone"
-              value={brokerData.phone}
-              onChange={handleBrokerChange}
+              name="wareouseName"
+              multiline
+              value={receiverData.name}
+              onChange={handleReceiverChange}
             />
+              </Grid>
+            <Grid xs={12}>
             <TextField
-              label="Broker's Email"
-              type="email"
-              name="email"
+              label="Reciever's Address"
               required
-              variant="outlined"
-              value={brokerData.email}
-              onChange={handleBrokerChange}
+              multiline
+              name="address"
+              value={receiverData.address}
+              onChange={handleReceiverChange}
             />
-          </div>
-          <div className="form-carrier">
-            <TextField
-              label="Carrier's Company Name"
-              variant="outlined"
-              required
-              name="companyName"
-              value={carrierData.companyName}
-              onChange={handleCarrierChange}
-            />
-            <TextField
-              label="Carrier's Phone"
-              variant="outlined"
-              required
-              name="phone"
-              value={carrierData.phone}
-              onChange={handleCarrierChange}
-            />
-            <TextField
-              label="Carrier's Email"
-              type="email"
-              required
-              name="email"
-              variant="outlined"
-              value={carrierData.email}
-              onChange={handleCarrierChange}
-            />
-            <TextField
-              label="Dispatch Name"
-              variant="outlined"
-              required
-              name="dispatchName"
-              value={carrierData.dispatchName}
-              onChange={handleCarrierChange}
-            />
-          </div>
-          <div style={{ paddingTop: "45px" }}>
-            <div>
               <TextField
-                label="Carrier's Rate"
-                variant="outlined"
+                label="Reciever's City"
                 required
-                helperText={rateError}
-                error={rateError}
-                value={carrierRate}
-                onChange={(e)=>setCarrierRate(e.target.value)}
-              />
-              {/*<Select
-              options={chargeOptions}
-              value={selectedOption}
-              onChange={handleInputChange}
-            />
-            */}
-              <TextField
-                label="Carrier pay fee"
-                required
-                helperText={feeError}
-                error={feeError}
-                id="fee"
-                value={carrierFee}
-                onChange={(e)=>setCarrierFee(e.target.value)}
-              />
-            </div>
-          </div>
-          <div style={{ paddingTop: "45px" }}>
-            <NetPayCalculator />
-          </div>
-          <div className="shipper-info">
-            <div style={{ paddingBottom: "15px" }}>
-              <TextField
-                label="Shipper's Name"
-                required
-                multiline
-                name="warehouseName"
-                value={shipperData.warehouseName}
-                onChange={handleShipperChange}
-              />
-              <TextField
-                label="Shipper's Address"
-                required
-                multiline
-                name="address"
-                value={shipperData.address}
-                onChange={handleShipperChange}
-              />
-            </div>
-            {/* <div className="shipper-region-selector">
-              <CountryDropdown
-                value={shipperCountry}
-                onChange={(e) => setShipperCountry(e.target.value)}
-              />
-              <RegionDropdown
-                country={shipperCountry}
-                value={shipperState}
-                onChange={(e) => setShipperState(e.target.value)}
-              />
-            </div> */}
-            <div style={{ paddingTop: "15px" }}>
-              <TextField
-                label="Shipper's City"
-                required
-                multiline
                 name="city"
-                value={shipperData.city}
-                onChange={handleShipperChange}
+                multiline
+                value={receiverData.city}
+                onChange={handleReceiverChange}
               />
-
               <TextField
-                label="Shipper's ZipCode"
+                label="Reciever's ZipCode"
                 required
+                multiline
                 name="zipcode"
-                multiline
-                value={shipperData.zipcode}
-                onChange={handleShipperChange}
-              />
-            </div>
-          </div>
-          <div className="data-selector">
-            <div>
-              <FormLabel color="primary">Earliest time for pick up</FormLabel>
-              <div>
-                <Input
-                  type="datetime"
-                  name="earliestTime"
-                  value={shipperData.earliestTime}
-                  onChange={handleShipperChange}
-                />
-              </div>
-              {
-              //Data-time pickers not working,should install new version
-            }
-            </div>
-            <div style={{ paddingTop: "15px" }}>
-              <FormLabel>Latest time for pick up</FormLabel>
-              <div>
-                <Input
-                  type="datatime-local"
-                  name="latestTime"
-                  value={shipperData.latestTime}
-                  onChange={handleShipperChange}
-                />
-              </div>
-            </div>
-          </div>
-          <div>
-            <div style={{ paddingTop: "45px", paddingBottom: "15px" }}>
-              <TextField
-                label="Reciever's Name"
-                required
-                name="wareouseName"
-                multiline
-                value={receiverData.name}
+                value={receiverData.zipcode}
                 onChange={handleReceiverChange}
               />
-              <TextField
-                label="Reciever's Address"
-                required
-                multiline
-                name="address"
-                value={receiverData.address}
-                onChange={handleReceiverChange}
-              />
-            </div>
-            <div>
-              {/* <div className="region-selector">
-                <CountryDropdown
-                  value={recieverCountry}
-                  onChange={(e) => setRecieverCountry(e)}
-                />
-                <RegionDropdown
-                  country={recieverCountry}
-                  value={recieverState}
-                  onChange={(e) => setRecieverState(e.target.value)}
-                />
-              </div> */}
-              <div style={{ paddingTop: "15px" }}>
-                <TextField
-                  label="Reciever's City"
-                  required
-                  name="city"
-                  multiline
-                  value={receiverData.city}
-                  onChange={handleReceiverChange}
-                />
-                <TextField
-                  label="Reciever's ZipCode"
-                  required
-                  multiline
-                  name="zipcode"
-                  value={receiverData.zipcode}
-                  onChange={handleReceiverChange}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="data-selector">
-            <div>
-              <FormLabel color="primary">Earliest time for delivery</FormLabel>
-              <div>
-                <Input
-                  type="datetime"
-                  name="earliestTime"
-                  value={receiverData.earliestTime}
-                  onChange={handleReceiverChange}
-                />
-              </div>
-            </div>
-            <div style={{ paddingTop: "15px" }}>
-              <FormLabel>Latest time for delivery</FormLabel>
-              <div>
-                <Input
-                  type="datetime"
-                  name="latestTime"
-                  value={receiverData.latestTime}
-                  onChange={handleReceiverChange}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="button-submit">
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              style={{ marginTop: 10 }}
-              onClick={handleSubmit}
-            >
-              Submit
-            </Button>
-          </div>
-        </div>
-      </form>
-    </div>
+              </Grid>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <Grid container xs={12} spacing={2}>
+              <Grid xs={6} item>
+            <DateTimePicker
+              renderInput={(props) => <TextField {...props} />}
+              value={receiverEarlyDate}
+              onChange={(e) => receiverEarlyDate(e)}
+            />
+            </Grid>
+            <Grid item xs={6}>
+            <DateTimePicker
+              renderInput={(props) => <TextField {...props} />}
+              value={receiverEarlyDate}
+              onChange={(e) => setReceiverLateDate(e)}
+            />
+              </Grid>
+              </Grid>
+          </LocalizationProvider>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            sx={{ marginTop: 10 }}
+            onClick={handleSubmit}
+          >
+            Submit
+          </Button>
+      </Grid>
+      </Grid>
+    </Box>
   );
 };
 

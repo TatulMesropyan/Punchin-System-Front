@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { TextField, Button, Typography } from "@mui/material";
+import { TextField, Button, Typography ,Grid} from "@mui/material";
 import "./App.css";
 
 const Registration = () => {
@@ -48,12 +48,12 @@ const Registration = () => {
     let password = document.getElementById("password");
     let confirmationPassword = document.getElementById("confirmationPassword");
     if (newUserPassword !== newPasswordConfirm) {
-      password.style.color = "red";
-      confirmationPassword.style.color = "red";
+      password.sx.color = "red";
+      confirmationPassword.sx.color = "red";
       setIsError("Passwords didnt match");
     } else {
-      password.style.color = "black";
-      confirmationPassword.style.color = "black";
+      password.sx.color = "black";
+      confirmationPassword.sx.color = "black";
       setIsError("");
     }
   }, [newUserPassword, newPasswordConfirm]);
@@ -63,11 +63,11 @@ const Registration = () => {
   };
   
   return (
-    <div className="register-form">
-      <Typography variant="h6" noWrap component="div">
+    <Grid className="register-form">
+      <Typography variant="h6" noWrap>
         Enter Your Credentials
       </Typography>
-      <div className="login-field">
+      <Grid className="login-field">
         <TextField
           label="Name"
           require
@@ -75,8 +75,8 @@ const Registration = () => {
           value={newUserName}
           onChange={handleName}
         />
-      </div>
-      <div className="login-field">
+      </Grid>
+      <Grid className="login-field">
         <TextField
           label="Surname"
           variant="filled"
@@ -84,8 +84,8 @@ const Registration = () => {
           value={newUserSurname}
           onChange={handleSurname}
         />
-      </div>
-      <div className="login-field">
+      </Grid>
+      <Grid className="login-field">
         <TextField
           label="Email"
           required
@@ -94,8 +94,8 @@ const Registration = () => {
           value={newUserEmail}
           onChange={handleEmail}
         />
-      </div>
-      <div className="login-field">
+      </Grid>
+      <Grid className="login-field">
         <TextField
           label="Password"
           required
@@ -105,11 +105,11 @@ const Registration = () => {
           value={newUserPassword}
           onChange={handlePassword}
         />
-      </div>
+      </Grid>
       <Button variant="outlined" onClick={showPassword}>
         Show Password
       </Button>
-      <div className="login-field">
+      <Grid className="login-field">
         <TextField
           label="Repeat Password"
           variant="filled"
@@ -119,13 +119,13 @@ const Registration = () => {
           value={newPasswordConfirm}
           onChange={handlePassChecker}
         />
-      </div>
-      <div style={{ paddingBottom: "15px", color: "red" }}>{isError}</div>
+      </Grid>
+      <Grid sx={{ paddingBottom: "15px", color: "red" }}>{isError}</Grid>
       <Button variant="contained" onClick={handleSubmit}>
         Submit
       </Button>
       <Button onClick={(e) => handleClose(e)}>Cancel</Button>
-    </div>
+    </Grid>
   );
 };
 
