@@ -3,12 +3,11 @@ import React from 'react';
 import Punchin from './Punchin';
 import Header from './Header.jsx'
 import LoginPage from './LoginPage';
-import Registration from './Registration';
+import RateCon from './RateCon'
 function App() {
   return (
    <>
-   <Header/>
-   <Punchin/>
+  <RateCon/>
    </>
   );
 }

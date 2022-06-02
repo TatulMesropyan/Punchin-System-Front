@@ -8,9 +8,9 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import { LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
-import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns"
-import {DateTimePicker} from "@mui/x-date-pickers/DateTimePicker"
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { DatePicker } from "@mui/x-date-pickers";
 import "./App.css";
 
@@ -122,19 +122,21 @@ const Punchin = () => {
   }, [loadNumber]);
 
   return (
-    <Box sx={{ paddingTop: "50px", textAlign: "center" }}>
+    <Box
+      sx={{ paddingTop: "50px", textAlign: "center", alignContent: "center" }}
+    >
       <Grid container xs={12} spacing={2}>
         <Grid item xs={12}>
           <Typography variant="h4">Load Creating Date</Typography>
         </Grid>
-        <Grid xs={12} container spacing={2} pt={2}>
+        <Grid xs={12} container spacing={2} pt={3} sx={{ paddingLeft: "38%" }}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
               label="Creating Date"
               renderInput={(props) => <TextField {...props} />}
               required
               value={date}
-              onChange={(e) => setDate(e.target.value)}
+              onChange={(e) => setDate(e)}
             />
           </LocalizationProvider>
           <TextField
@@ -281,28 +283,29 @@ const Punchin = () => {
             onChange={handleShipperChange}
           />
         </Grid>
-        <Grid container textAlign='center' xs={12}>
+        <Grid container xs={12}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <Grid item xs={6}>
-          <Typography variant="h6">Earliest Time</Typography>
-            <DateTimePicker
-              renderInput={(props) => <TextField {...props} />}
-              value={shipperEarlyDate}
-              onChange={(e) => setShipperEarlyDate(e)}
-            />
+              <Typography variant="h6">Earliest Time</Typography>
+              <DateTimePicker
+                renderInput={(props) => <TextField {...props} />}
+                value={shipperEarlyDate}
+                onChange={(e) => setShipperEarlyDate(e)}
+              />
             </Grid>
             <Grid xs={6} item>
-            <Typography variant="h6">Latest Time</Typography>
-            <DateTimePicker
-              renderInput={(props) => <TextField {...props} />}
-              value={shipperLateDate}
-              onChange={(e) => setShipperLateDate(e)}
-            />
+              <Typography variant="h6">Latest Time</Typography>
+              <DateTimePicker
+                renderInput={(props) => <TextField {...props} />}
+                value={shipperLateDate}
+                onChange={(e) => setShipperLateDate(e)}
+              />
             </Grid>
           </LocalizationProvider>
-          </Grid>
-          <Grid container xs={12} >
-            <Grid item xs={12} >
+        </Grid>
+        <Grid container align="center" spacing={2} xs={12}>
+          <Typography variant="h4">Receiver Info</Typography>
+          <Grid item xs={12}>
             <TextField
               label="Reciever's Name"
               required
@@ -311,8 +314,8 @@ const Punchin = () => {
               value={receiverData.name}
               onChange={handleReceiverChange}
             />
-              </Grid>
-            <Grid xs={12}>
+          </Grid>
+          <Grid xs={12}>
             <TextField
               label="Reciever's Address"
               required
@@ -321,51 +324,53 @@ const Punchin = () => {
               value={receiverData.address}
               onChange={handleReceiverChange}
             />
-              <TextField
-                label="Reciever's City"
-                required
-                name="city"
-                multiline
-                value={receiverData.city}
-                onChange={handleReceiverChange}
-              />
-              <TextField
-                label="Reciever's ZipCode"
-                required
-                multiline
-                name="zipcode"
-                value={receiverData.zipcode}
-                onChange={handleReceiverChange}
-              />
-              </Grid>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <Grid container xs={12} spacing={2}>
+            <TextField
+              label="Reciever's City"
+              required
+              name="city"
+              multiline
+              value={receiverData.city}
+              onChange={handleReceiverChange}
+            />
+            <TextField
+              label="Reciever's ZipCode"
+              required
+              multiline
+              name="zipcode"
+              value={receiverData.zipcode}
+              onChange={handleReceiverChange}
+            />
+          </Grid>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <Grid container xs={12} spacing={2}>
               <Grid xs={6} item>
-            <DateTimePicker
-              renderInput={(props) => <TextField {...props} />}
-              value={receiverEarlyDate}
-              onChange={(e) => receiverEarlyDate(e)}
-            />
+                <DateTimePicker
+                  renderInput={(props) => <TextField {...props} />}
+                  value={receiverEarlyDate}
+                  onChange={(e) => setReceivEarlyDate(e)}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <DateTimePicker
+                  renderInput={(props) => <TextField {...props} />}
+                  value={receiverLateDate}
+                  onChange={(e) => setReceiverLateDate(e)}
+                />
+              </Grid>
             </Grid>
-            <Grid item xs={6}>
-            <DateTimePicker
-              renderInput={(props) => <TextField {...props} />}
-              value={receiverEarlyDate}
-              onChange={(e) => setReceiverLateDate(e)}
-            />
-              </Grid>
-              </Grid>
           </LocalizationProvider>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            sx={{ marginTop: 10 }}
-            onClick={handleSubmit}
-          >
-            Submit
-          </Button>
-      </Grid>
+          <Grid>
+            <Button
+              type="submit"
+              sx={{ textAlign: "center" }}
+              variant="contained"
+              color="primary"
+              onClick={handleSubmit}
+            >
+              Submit
+            </Button>
+          </Grid>
+        </Grid>
       </Grid>
     </Box>
   );
