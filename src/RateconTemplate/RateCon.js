@@ -5,7 +5,7 @@ import RateConBody from "./RateconBody/RateConBody";
 const RateCon = ({headerData}) => {
     return (
         <Box>
-            <Grid sx={{border: '2px solid black'}} paddingBottom='20px'>
+            <Grid sx={{border: '2px solid black'}} >
             <RateConHeader headerData={headerData}/>
             </Grid>
             <RateConBody/>
