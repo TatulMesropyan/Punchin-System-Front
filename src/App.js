@@ -1,10 +1,8 @@
 import './App.css';
 import React from 'react';
-import Punchin from './Punchin';
-import Header from './Header.jsx'
-import LoginPage from './LoginPage';
+import Punchin from './PunchinPage/Punchin';
+import {Box} from "@mui/material";
 import RateCon from './RateconTemplate/RateCon'
-import RateConHeader from "./RateconTemplate/RateconHeader/RateConHeader";
 function App() {
     const headerData = {
         brokerName:'',
@@ -12,9 +10,9 @@ function App() {
         brokerEmail:'',
     }
   return (
-   <>
+   <Box>
        <RateCon headerData={headerData}/>
-   </>
+   </Box>
   );
 }
 

@@ -9,7 +9,7 @@ const HeaderRightSide = ({headerData}) => {
                 Email: {headerData.brokerEmail}<br />
                 Phone: {headerData.brokerPhone}<br />
                 Manager's Name: Aida Davis<br />
-                Email:main.greenlinelogistics@gmail.com
+                Email:main.greenlinelogistics@gmail.com<br />
                 Phone:(870)205-8050<br />
             </Grid>
     )
