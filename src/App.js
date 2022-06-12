@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import Punchin from './PunchinPage/Punchin';
+import {PunchinPage} from "./PunchinPage/PunchinPage";
 import {Box} from "@mui/material";
 import RateCon from './RateconTemplate/RateCon'
 function App() {
@@ -11,7 +11,8 @@ function App() {
     }
   return (
    <Box>
-       <RateCon headerData={headerData}/>
+       <PunchinPage/>
+       {/*<RateCon headerData={headerData}/>*/}
    </Box>
   );
 }
