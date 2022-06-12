@@ -4,7 +4,7 @@ import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import {DateTimePicker} from "@mui/x-date-pickers/DateTimePicker";
 import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
 
-export const ShipperPunchin = () => {
+export const ShipperPunchin = ({data, setData}) => {
     const [shipperEarlyDate, setShipperEarlyDate] = useState("");
     const [shipperLateDate, setShipperLateDate] = useState("");
 
@@ -22,6 +22,7 @@ export const ShipperPunchin = () => {
             ...shipperData,
             [name]: value,
         })
+        setData({...data, shipperData})
     };
     return (
         <Box>
@@ -47,7 +48,7 @@ export const ShipperPunchin = () => {
                 </Grid>
             </Grid>
             <Grid xs={12} container>
-                <Grid xs={4} item>
+                <Grid xs={6} item>
                     <TextField
                         label="Shipper's Address"
                         required
@@ -58,7 +59,7 @@ export const ShipperPunchin = () => {
                         onChange={handleShipperChange}
                     />
                 </Grid>
-                <Grid xs={4} item>
+                <Grid xs={6} item>
                     <TextField
                         label="Shipper's City"
                         required
@@ -68,15 +69,28 @@ export const ShipperPunchin = () => {
                         onChange={handleShipperChange}
                     />
                 </Grid>
-                <Grid xs={4} item>
-                    <TextField
-                        label="Shipper's ZipCode"
-                        required
-                        fullWidth
-                        name="zipcode"
-                        value={shipperData.zipcode}
-                        onChange={handleShipperChange}
-                    />
+                <Grid xs={12} container>
+                    <Grid xs={6} item>
+                        <TextField
+                            label="Shipper's State"
+                            required
+                            fullWidth
+                            sx={{paddingBottom: '10px'}}
+                            name="state"
+                            value={shipperData.state}
+                            onChange={handleShipperChange}
+                        />
+                    </Grid>
+                    <Grid xs={6} item>
+                        <TextField
+                            label="Shipper's ZipCode"
+                            required
+                            fullWidth
+                            name="zipcode"
+                            value={shipperData.zipcode}
+                            onChange={handleShipperChange}
+                        />
+                    </Grid>
                 </Grid>
             </Grid>
             <Grid xs={12} container>

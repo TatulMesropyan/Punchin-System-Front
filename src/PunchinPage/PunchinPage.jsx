@@ -7,39 +7,32 @@ import {ReceiverPunchin} from "./ReceiverPunchin";
 import {Box, Button, Grid} from "@mui/material";
 
 
-export const PunchinPage = () => {
+export const PunchinPage = ({data,setData}) => {
     return (
         <Box sx={{paddingRight: '100px', paddingLeft: '100px', border: '1px solid black', minHeight: '1000px'}}>
             <Grid xs={12} container padding='20px'>
                 <Grid xs={12} item>
-                    <MainPunchin/>
+                    <MainPunchin data={data}  setData={setData}/>
                 </Grid>
             </Grid>
             <Grid xs={12} container padding='20px'>
                 <Grid xs={12} item>
-                    <BrokerPunchin/>
+                    <BrokerPunchin data={data}  setData={setData}/>
                 </Grid>
             </Grid>
             <Grid xs={12} container padding='20px'>
                 <Grid xs={12} item>
-                    <CarrierPunchin/>
+                    <CarrierPunchin data={data}  setData={setData}/>
                 </Grid>
             </Grid>
             <Grid xs={12} container padding='20px'>
                 <Grid xs={12} item>
-                    <ShipperPunchin/>
+                    <ShipperPunchin data={data}  setData={setData}/>
                 </Grid>
             </Grid>
             <Grid xs={12} container padding='20px'>
                 <Grid xs={12} item>
-                    <ReceiverPunchin/>
-                </Grid>
-            </Grid>
-            <Grid xs={12} container padding='20px'>
-                <Grid xs={12} item textAlign='center'>
-                    <Button variant='contained'>
-                        Submit
-                    </Button>
+                    <ReceiverPunchin data={data}  setData={setData}/>
                 </Grid>
             </Grid>
         </Box>

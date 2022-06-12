@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React, {useState,createContext} from "react";
 import {Grid, TextField, Box, Typography} from "@mui/material";
 
-export const BrokerPunchin = () => {
+export const BrokerPunchin = ({data,setData}) => {
+
     const [brokerData, setBrokerData] = useState({
         dispatchName: "",
         phone: "",
@@ -13,7 +14,8 @@ export const BrokerPunchin = () => {
         setBrokerData({
             ...brokerData,
             [name]: value,
-        });
+        })
+        setData({...data,brokerData});
     };
     return (
         <Box paddingTop='20px' paddingBottom='20px'>

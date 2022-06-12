@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Grid, TextField, Typography, Box} from "@mui/material";
 
-export const CarrierPunchin = () => {
+export const CarrierPunchin = ({data,setData}) => {
 
     const [carrierData, setCarrierData] = useState({
         companyName: "",
@@ -16,6 +16,7 @@ export const CarrierPunchin = () => {
             ...carrierData,
             [name]: value,
         });
+        setData({...data,carrierData})
     };
     return (
         <Box>

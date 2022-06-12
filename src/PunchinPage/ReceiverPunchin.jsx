@@ -4,7 +4,7 @@ import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
 import {DateTimePicker} from "@mui/x-date-pickers/DateTimePicker";
 
-export const ReceiverPunchin = () => {
+export const ReceiverPunchin = ({data,setData}) => {
     const [receiverEarlyDate, setReceivEarlyDate] = useState("")
     const [receiverLateDate, setReceiverLateDate] = useState("")
 
@@ -17,6 +17,7 @@ export const ReceiverPunchin = () => {
         setReceiverData({
             ...receiverData, [name]: value,
         });
+        setData({...data,receiverData})
     };
     return (
         <Box>
@@ -39,7 +40,7 @@ export const ReceiverPunchin = () => {
                 </Grid>
             </Grid>
             <Grid xs={12} container>
-                <Grid xs={4} item>
+                <Grid xs={6} item>
                     <TextField
                         label="Reciever's Address"
                         required
@@ -49,7 +50,7 @@ export const ReceiverPunchin = () => {
                         onChange={handleReceiverChange}
                     />
                 </Grid>
-                <Grid xs={4} item>
+                <Grid xs={6} item>
                     <TextField
                         label="Reciever's City"
                         required
@@ -59,7 +60,18 @@ export const ReceiverPunchin = () => {
                         onChange={handleReceiverChange}
                     />
                 </Grid>
-                <Grid xs={4} item>
+                <Grid xs={12} container>
+                    <Grid xs={6} item>
+                        <TextField
+                            label="Reciever's State"
+                            required
+                            fullWidth
+                            name="state"
+                            value={receiverData.state}
+                            onChange={handleReceiverChange}
+                        />
+                    </Grid>
+                <Grid xs={6} item>
                     <TextField
                         label="Reciever's ZipCode"
                         required
@@ -68,6 +80,7 @@ export const ReceiverPunchin = () => {
                         value={receiverData.zipcode}
                         onChange={handleReceiverChange}
                     />
+                </Grid>
                 </Grid>
             </Grid>
             <Grid xs={12} container>
