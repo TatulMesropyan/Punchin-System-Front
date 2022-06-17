@@ -1,7 +1,7 @@
 import React from "react";
 import {Box, Grid, Typography} from "@mui/material";
 
-export const RateconBodyUpper = () => {
+export const RateconBodyUpper = ({data}) => {
     return (
         <Box>
             <Grid minHeight='100px' xs={12} border='1px solid black' height='100px'>
@@ -20,21 +20,23 @@ export const RateconBodyUpper = () => {
                     <Typography variant='h4'>
                         Carrier Pay
                     </Typography>
-                    <span style={{fontSize: '20px'}}>Initial Rate:{'300'}$</span><br/>
-                    <span style={{fontSize: '20px'}}>QP Charge:{'300'}%</span><br/>
-                    <span style={{fontSize: '20px'}}>Net Pay:{'300'}$</span><br/>
+                    <span style={{fontSize: '20px'}}>Initial Rate:{data.carrierRate}$</span><br/>
+                    <span style={{fontSize: '20px'}}>QP Charge:{data.carrierFee}%</span><br/>
+                    <span
+                        style={{fontSize: '20px'}}>Net Pay:{data.carrierRate - (data.carrierRate * data.carrierFee) / 100}$
+                    </span><br/>
                 </Grid>
                 <Grid item xs={4} border='1px solid black'>
                     <Typography variant='h4'>
                         Load Number
                     </Typography>
-                    <span style={{fontSize: '26px'}}>#{'1234'}</span>
+                    <span style={{fontSize: '26px'}}>#{data.loadNumber}</span>
                 </Grid>
                 <Grid xs={4} border='1px solid black'>
                     <Typography variant='h4'>
                         Creating Date
                     </Typography>
-                    <span style={{fontSize: '26px'}}>{'06/02/2022'}</span>
+                    <span style={{fontSize: '26px'}}>{'Today'}</span>
                 </Grid>
             </Grid>
         </Box>

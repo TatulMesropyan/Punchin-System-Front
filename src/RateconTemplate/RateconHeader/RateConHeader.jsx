@@ -4,18 +4,18 @@ import HeaderRightSide from "./HeaderRightSide";
 import HeaderMiddleSide from "./HeaderMiddleSide";
 import React from "react";
 
-const RateConHeader = ({headerData}) => {
+const RateConHeader = ({data}) => {
     return (
         <Box>
             <Grid xs={12} container>
                 <Grid item xs={4} paddingTop={10}>
-                    <HeaderLeftSide headerData={headerData}/>
+                    <HeaderLeftSide/>
                 </Grid>
                 <Grid item xs={4}>
-                    <HeaderMiddleSide/>
+                   <HeaderMiddleSide/>
                 </Grid>
-                <Grid item xs={4} paddingTop={10}>
-                    <HeaderRightSide headerData={headerData}/>
+               <Grid item xs={4} paddingTop={10}>
+                <HeaderRightSide data={data}/>
                 </Grid>
             </Grid>
 

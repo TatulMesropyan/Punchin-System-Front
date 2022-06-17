@@ -5,60 +5,62 @@ import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import {DatePicker} from "@mui/x-date-pickers";
 
 export const MainPunchin = ({data, setData}) => {
-    const [carrierRate, setCarrierRate] = useState(null);
-    const [carrierFee, setCarrierFee] = useState(null);
-    const [carrierNetPay, setCarrierNetPay] = useState(null);
-    const [loadNumber, setLoadNumber] = useState(null)
+    const [carrierRate, setCarrierRate] = useState('');
+    const [carrierFee, setCarrierFee] = useState('');
+    const [carrierNetPay, setCarrierNetPay] = useState('');
+    const [loadNumber, setLoadNumber] = useState('')
     const [loadNumberError, setLoadNumberError] = useState('')
     const [date, setDate] = useState();
     const [rateError, setRateError] = useState('')
     const [feeError, setFeeError] = useState('')
 
     const NetPayCalculator = () => {
-        let x = carrierRate - (carrierRate * carrierFee) / 100;
-        setCarrierNetPay(x);
-        return <TextField label="Net Pay" fullWidth value={carrierNetPay}/>;
+        if (carrierRate && carrierFee) {
+            let x = carrierRate - (carrierRate * carrierFee) / 100;
+            setCarrierNetPay(x);
+            return <TextField label="Net Pay" fullWidth value={carrierNetPay}/>;
+        } else return <TextField value={"Enter Valid Numbers"} label="Net Pay" fullWidth/>
     };
     useEffect(() => {
-        document.title = `Load Number:${loadNumber}`;
+        document.title = `Load Number: ${loadNumber ? loadNumber : "⛔️"}`
     }, [loadNumber]);
-
-    useEffect(() => {
-        if (!/[0-9]/.test(loadNumber)) {
-            setLoadNumberError("Must Contain Number!");
-        }
-        if (/[0-9]/.test(loadNumber)) {
-            setLoadNumberError("");
-        }
-        if (!/[0-9]/.test(carrierFee)) {
-            setFeeError("Must Contain Number!");
-        }
-        if (/[0-9]/.test(carrierFee)) {
-            setFeeError("");
-        }
-        if (!/[0-9]/.test(carrierRate)) {
-            setRateError("Must Contain Number!");
-        }
-        if (/[0-9]/.test(carrierRate)) {
-            setRateError("");
-        }
-    }, [loadNumber, carrierFee, carrierRate]);
-    const handleDate = (e) =>{
+    //
+    // useEffect(() => {
+    //     if (!/[0-9]/.test(loadNumber)) {
+    //         setLoadNumberError("Must Contain Number!");
+    //     }
+    //     if (/[0-9]/.test(loadNumber)) {
+    //         setLoadNumberError("");
+    //     }
+    //     if (!/[0-9]/.test(carrierFee)) {
+    //         setFeeError("Must Contain Number!");
+    //     }
+    //     if (/[0-9]/.test(carrierFee)) {
+    //         setFeeError("");
+    //     }
+    //     if (!/[0-9]/.test(carrierRate)) {
+    //         setRateError("Must Contain Number!");
+    //     }
+    //     if (/[0-9]/.test(carrierRate)) {
+    //         setRateError("");
+    //     }
+    // }, [loadNumber, carrierFee, carrierRate]);
+    const handleDate = (e) => {
         setDate(e.target)
-        setData({...data,date})
+        // setData({...data, e.target.value})
     }
     const handleLoadNumber = (e) => {
         setLoadNumber(e.target.value)
-        setData({...data,loadNumber})
+        setData({...data, loadNumber: e.target.value})
     }
     const handleCarrierRate = (e) => {
         setCarrierRate(e.target.value)
-        setData({...data,carrierRate})
+        setData({...data, carrierRate: e.target.value})
     }
-    const handleCarrierFee = (e) =>{
+    const handleCarrierFee = (e) => {
+        console.log(e.target.value)
         setCarrierFee(e.target.value)
-        setData({...data,carrierFee})
-        setData({...data,carrierNetPay})
+        setData({...data, carrierFee: e.target.value})
     }
     return (
         <Box>
@@ -75,7 +77,7 @@ export const MainPunchin = ({data, setData}) => {
                             renderInput={(props) => <TextField fullWidth {...props} />}
                             required
                             value={date}
-                            onChange={handleDate}
+                            onChange={(e) => handleDate(e)}
                         />
                     </LocalizationProvider>
                 </Grid>
@@ -93,7 +95,7 @@ export const MainPunchin = ({data, setData}) => {
                 </Grid>
             </Grid>
             <Grid container xs={12}>
-                <Grid xs={6}>
+                <Grid xs={6} item>
                     <TextField
                         label="Carrier's Rate"
                         variant="outlined"
@@ -105,7 +107,7 @@ export const MainPunchin = ({data, setData}) => {
                         onChange={handleCarrierRate}
                     />
                 </Grid>
-                <Grid xs={6}>
+                <Grid xs={6} item>
                     <TextField
                         label="Carrier pay fee"
                         required

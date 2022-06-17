@@ -23,6 +23,8 @@ export const ShipperPunchin = ({data, setData}) => {
             [name]: value,
         })
         setData({...data, shipperData})
+        setData({...data,shipperEarlyDate})
+        setData({...data,shipperLateDate})
     };
     return (
         <Box>
