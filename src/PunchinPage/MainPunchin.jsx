@@ -1,67 +1,25 @@
-import React, {useEffect, useState, useCallback} from "react";
+import React, {useEffect, useState} from "react";
 import {Box, Grid, TextField, Typography} from "@mui/material";
 import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import {DatePicker} from "@mui/x-date-pickers";
 
 export const MainPunchin = ({data, setData}) => {
-    const [carrierRate, setCarrierRate] = useState('');
-    const [carrierFee, setCarrierFee] = useState('');
     const [carrierNetPay, setCarrierNetPay] = useState('');
-    const [loadNumber, setLoadNumber] = useState('')
     const [loadNumberError, setLoadNumberError] = useState('')
-    const [date, setDate] = useState();
     const [rateError, setRateError] = useState('')
     const [feeError, setFeeError] = useState('')
 
     const NetPayCalculator = () => {
-        if (carrierRate && carrierFee) {
-            let x = carrierRate - (carrierRate * carrierFee) / 100;
+        if (data.carrierRate && data.carrierFee) {
+            let x = data.carrierRate - (data.carrierRate * data.carrierFee) / 100;
             setCarrierNetPay(x);
             return <TextField label="Net Pay" fullWidth value={carrierNetPay}/>;
         } else return <TextField value={"Enter Valid Numbers"} label="Net Pay" fullWidth/>
     };
     useEffect(() => {
-        document.title = `Load Number: ${loadNumber ? loadNumber : "⛔️"}`
-    }, [loadNumber]);
-    //
-    // useEffect(() => {
-    //     if (!/[0-9]/.test(loadNumber)) {
-    //         setLoadNumberError("Must Contain Number!");
-    //     }
-    //     if (/[0-9]/.test(loadNumber)) {
-    //         setLoadNumberError("");
-    //     }
-    //     if (!/[0-9]/.test(carrierFee)) {
-    //         setFeeError("Must Contain Number!");
-    //     }
-    //     if (/[0-9]/.test(carrierFee)) {
-    //         setFeeError("");
-    //     }
-    //     if (!/[0-9]/.test(carrierRate)) {
-    //         setRateError("Must Contain Number!");
-    //     }
-    //     if (/[0-9]/.test(carrierRate)) {
-    //         setRateError("");
-    //     }
-    // }, [loadNumber, carrierFee, carrierRate]);
-    const handleDate = (e) => {
-        setDate(e.target)
-        // setData({...data, e.target.value})
-    }
-    const handleLoadNumber = (e) => {
-        setLoadNumber(e.target.value)
-        setData({...data, loadNumber: e.target.value})
-    }
-    const handleCarrierRate = (e) => {
-        setCarrierRate(e.target.value)
-        setData({...data, carrierRate: e.target.value})
-    }
-    const handleCarrierFee = (e) => {
-        console.log(e.target.value)
-        setCarrierFee(e.target.value)
-        setData({...data, carrierFee: e.target.value})
-    }
+        document.title = `Load Number: ${data.loadNumber ? data.loadNumber : "⛔️"}`
+    }, [data.loadNumber]);
     return (
         <Box>
             <Grid container xs={12} paddingBottom='20px'>
@@ -76,8 +34,8 @@ export const MainPunchin = ({data, setData}) => {
                             label="Creating Date"
                             renderInput={(props) => <TextField fullWidth {...props} />}
                             required
-                            value={date}
-                            onChange={(e) => handleDate(e)}
+                            value={data.loadCreatingDate}
+                            onChange={(e) => setData({...data, loadCreatingDate: e})}
                         />
                     </LocalizationProvider>
                 </Grid>
@@ -89,8 +47,8 @@ export const MainPunchin = ({data, setData}) => {
                         variant="outlined"
                         helperText={loadNumberError}
                         error={loadNumberError && true}
-                        value={loadNumber}
-                        onChange={handleLoadNumber}
+                        value={data.loadNumber}
+                        onChange={(e) => setData({...data, loadNumber: e.target.value})}
                     />
                 </Grid>
             </Grid>
@@ -103,8 +61,8 @@ export const MainPunchin = ({data, setData}) => {
                         helperText={rateError}
                         error={rateError}
                         fullWidth
-                        value={carrierRate}
-                        onChange={handleCarrierRate}
+                        value={data.carrierRate}
+                        onChange={(e) => setData({...data, carrierRate: e.target.value})}
                     />
                 </Grid>
                 <Grid xs={6} item>
@@ -114,8 +72,8 @@ export const MainPunchin = ({data, setData}) => {
                         helperText={feeError}
                         error={feeError}
                         fullWidth
-                        value={carrierFee}
-                        onChange={handleCarrierFee}
+                        value={data.carrierFee}
+                        onChange={(e) => setData({...data, carrierFee: e.target.value})}
                     />
                 </Grid>
             </Grid>

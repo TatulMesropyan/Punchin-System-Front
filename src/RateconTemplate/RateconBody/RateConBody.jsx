@@ -15,7 +15,7 @@ const RateConBody = ({data}) => {
                     <RateConBodyMiddle data={data}/>
                 </Grid>
                 <Grid xs={12} item>
-                    {/*<RateConBodyLower data={data}/>*/}
+                    <RateConBodyLower data={data}/>
                 </Grid>
             </Grid>
         </Box>

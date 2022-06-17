@@ -4,16 +4,16 @@ import {Box, Grid, Typography} from "@mui/material";
 export const RateconBodyUpper = ({data}) => {
     return (
         <Box>
-            <Grid minHeight='100px' xs={12} border='1px solid black' height='100px'>
+            <Grid minHeight='100px' container xs={12} border='1px solid black' height='100px'>
                 <Typography fontWeight='bold' textAlign='center' fontSize='30px' paddingTop='20px'>
                     Load Details
                 </Typography>
             </Grid>
             <Grid xs={12} container height='35px'>
-                <Grid xs={3} border='1px solid black'>Weight:{'44000'}lbs</Grid>
-                <Grid xs={3} border='1px solid black'>Commodity:{'Foam'}</Grid>
-                <Grid xs={3} sx={{color: 'red'}} border='1px solid black'>Temperature:{'40F'}</Grid>
-                <Grid xs={3} border='1px solid black'>Truck Type:{'53FT Van'}</Grid>
+                <Grid xs={3}  item border='1px solid black'>Weight:{'44000'}lbs</Grid>
+                <Grid xs={3}  item border='1px solid black'>Commodity:{'Foam'}</Grid>
+                <Grid xs={3}  item sx={{color: 'red',border:'1px solid black'}} >Temperature:{'40F'}</Grid>
+                <Grid xs={3} item  border='1px solid black'>Truck Type:{'53FT Van'}</Grid>
             </Grid>
             <Grid xs={12} container sx={{border: '1px solid black', height: '150px'}}>
                 <Grid item xs={4} border='1px solid black'>
@@ -32,11 +32,11 @@ export const RateconBodyUpper = ({data}) => {
                     </Typography>
                     <span style={{fontSize: '26px'}}>#{data.loadNumber}</span>
                 </Grid>
-                <Grid xs={4} border='1px solid black'>
+                <Grid item xs={4} border='1px solid black'>
                     <Typography variant='h4'>
                         Creating Date
                     </Typography>
-                    <span style={{fontSize: '26px'}}>{'Today'}</span>
+                    <span style={{fontSize: '26px'}}>{data.loadCreatingDate}</span>
                 </Grid>
             </Grid>
         </Box>

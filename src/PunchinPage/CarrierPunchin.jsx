@@ -1,23 +1,7 @@
-import React, {useState} from "react";
+import React from "react";
 import {Grid, TextField, Typography, Box} from "@mui/material";
 
-export const CarrierPunchin = ({data,setData}) => {
-
-    const [carrierData, setCarrierData] = useState({
-        companyName: "",
-        email: "",
-        phone: "",
-        dispatchName: "",
-    });
-
-    const handleCarrierChange = (e) => {
-        const {name, value} = e.target;
-        setCarrierData({
-            ...carrierData,
-            [name]: value,
-        });
-        setData({...data,carrierData})
-    };
+export const CarrierPunchin = ({data, setData}) => {
     return (
         <Box>
             <Grid xs={12} container>
@@ -33,8 +17,8 @@ export const CarrierPunchin = ({data,setData}) => {
                         required
                         name="companyName"
                         fullWidth
-                        value={carrierData.companyName}
-                        onChange={handleCarrierChange}
+                        value={data.carrierCompanyName}
+                        onChange={(e) => setData({...data, carrierCompanyName: e.target.value})}
                     />
                 </Grid>
             </Grid>
@@ -46,8 +30,8 @@ export const CarrierPunchin = ({data,setData}) => {
                         required
                         fullWidth
                         name="phone"
-                        value={carrierData.phone}
-                        onChange={handleCarrierChange}
+                        value={data.carrierPhone}
+                        onChange={(e) => setData({...data, carrierPhone: e.target.value})}
                     />
                 </Grid>
                 <Grid xs={4} item>
@@ -57,8 +41,8 @@ export const CarrierPunchin = ({data,setData}) => {
                         fullWidth
                         name="email"
                         variant="outlined"
-                        value={carrierData.email}
-                        onChange={handleCarrierChange}
+                        value={data.carrierEmail}
+                        onChange={(e) => setData({...data, carrierEmail: e.target.value})}
                     />
                 </Grid>
                 <Grid xs={4} item>
@@ -68,8 +52,8 @@ export const CarrierPunchin = ({data,setData}) => {
                         required
                         fullWidth
                         name="dispatchName"
-                        value={carrierData.dispatchName}
-                        onChange={handleCarrierChange}
+                        value={data.carrierDispatchName}
+                        onChange={(e) => setData({...data, carrierDispatchName: e.target.value})}
                     />
                 </Grid>
             </Grid>

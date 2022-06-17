@@ -11,6 +11,7 @@ function App() {
     const navigate = useNavigate()
     const [data, setData] = useState({})
     const handleAllData = () => {
+            console.log(data)
          navigate('/ratecon')
     }
     return (

@@ -1,31 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 import {Grid, TextField, Box, Typography} from "@mui/material";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import {DateTimePicker} from "@mui/x-date-pickers/DateTimePicker";
 import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
 
 export const ShipperPunchin = ({data, setData}) => {
-    const [shipperEarlyDate, setShipperEarlyDate] = useState("");
-    const [shipperLateDate, setShipperLateDate] = useState("");
-
-    const [shipperData, setShipperData] = useState({
-        warehouseName: "",
-        address: "",
-        city: "",
-        state: "",
-        country: "United States",
-        zipcode: "",
-    });
-    const handleShipperChange = (e) => {
-        const {name, value} = e.target;
-        setShipperData({
-            ...shipperData,
-            [name]: value,
-        })
-        setData({...data, shipperData})
-        setData({...data,shipperEarlyDate})
-        setData({...data,shipperLateDate})
-    };
     return (
         <Box>
             <Grid xs={12} container>
@@ -44,8 +23,8 @@ export const ShipperPunchin = ({data, setData}) => {
                         fullWidth
                         sx={{paddingBottom: '10px'}}
                         name="warehouseName"
-                        value={shipperData.warehouseName}
-                        onChange={handleShipperChange}
+                        value={data.shipperWarehouseName}
+                        onChange={(e) => setData({...data, shipperWarehouseName: e.target.value})}
                     />
                 </Grid>
             </Grid>
@@ -57,8 +36,8 @@ export const ShipperPunchin = ({data, setData}) => {
                         fullWidth
                         multiline
                         name="address"
-                        value={shipperData.address}
-                        onChange={handleShipperChange}
+                        value={data.shipperAddress}
+                        onChange={(e) => setData({...data, shipperAddress: e.target.value})}
                     />
                 </Grid>
                 <Grid xs={6} item>
@@ -67,8 +46,8 @@ export const ShipperPunchin = ({data, setData}) => {
                         required
                         name="city"
                         fullWidth
-                        value={shipperData.city}
-                        onChange={handleShipperChange}
+                        value={data.shipperCity}
+                        onChange={(e) => setData({...data, shipperCity: e.target.value})}
                     />
                 </Grid>
                 <Grid xs={12} container>
@@ -79,8 +58,8 @@ export const ShipperPunchin = ({data, setData}) => {
                             fullWidth
                             sx={{paddingBottom: '10px'}}
                             name="state"
-                            value={shipperData.state}
-                            onChange={handleShipperChange}
+                            value={data.shipperState}
+                            onChange={(e) => setData({...data, shipperState: e.target.value})}
                         />
                     </Grid>
                     <Grid xs={6} item>
@@ -89,8 +68,8 @@ export const ShipperPunchin = ({data, setData}) => {
                             required
                             fullWidth
                             name="zipcode"
-                            value={shipperData.zipcode}
-                            onChange={handleShipperChange}
+                            value={data.shipperZipCode}
+                            onChange={(e) => setData({...data, shipperZipCode: e.target.value})}
                         />
                     </Grid>
                 </Grid>
@@ -101,16 +80,16 @@ export const ShipperPunchin = ({data, setData}) => {
                         <Typography variant="h6">Earliest Time</Typography>
                         <DateTimePicker
                             renderInput={(props) => <TextField fullWidth {...props} />}
-                            value={shipperEarlyDate}
-                            onChange={(e) => setShipperEarlyDate(e)}
+                            value={data.shipperEarlyDate}
+                            onChange={(e) => setData({...data, shipperEarlyDate: e})}
                         />
                     </Grid>
                     <Grid xs={6} item>
                         <Typography variant="h6">Latest Time</Typography>
                         <DateTimePicker
                             renderInput={(props) => <TextField fullWidth {...props} />}
-                            value={shipperLateDate}
-                            onChange={(e) => setShipperLateDate(e)}
+                            onChange={(e) => setData({...data, shipperLateDate: e})}
+                            value={data.shipperLateDate}
                         />
                     </Grid>
                 </LocalizationProvider>
