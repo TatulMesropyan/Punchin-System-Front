@@ -8,7 +8,6 @@ export const ReceiverPunchin = ({data,setData}) => {
     const [receiverEarlyDate, setReceivEarlyDate] = useState("")
     const [receiverLateDate, setReceiverLateDate] = useState("")
 
-
     const [receiverData, setReceiverData] = useState({
         warehouseName: "", address: "", city: "", state: "", country: "United States", zipcode: "",
     });
@@ -18,6 +17,9 @@ export const ReceiverPunchin = ({data,setData}) => {
             ...receiverData, [name]: value,
         });
         setData({...data,receiverData})
+        setData({...data,receiverEarlyDate})
+        setData({...data,receiverLateDate})
+
     };
     return (
         <Box>
