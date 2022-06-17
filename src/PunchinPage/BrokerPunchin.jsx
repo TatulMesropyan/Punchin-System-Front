@@ -2,21 +2,6 @@ import React, {useState,createContext} from "react";
 import {Grid, TextField, Box, Typography} from "@mui/material";
 
 export const BrokerPunchin = ({data,setData}) => {
-
-    const [brokerData, setBrokerData] = useState({
-        dispatchName: "",
-        phone: "",
-        email: "",
-    });
-
-    const handleBrokerChange = (e) => {
-        const {name, value} = e.target;
-        setBrokerData({
-            ...brokerData,
-            [name]: value,
-        })
-        setData({...data,brokerData});
-    };
     return (
         <Box paddingTop='20px' paddingBottom='20px'>
             <Grid xs={12} container>
@@ -33,8 +18,8 @@ export const BrokerPunchin = ({data,setData}) => {
                         variant="outlined"
                         name="dispatchName"
                         fullWidth
-                        value={brokerData.dispatchName}
-                        onChange={handleBrokerChange}
+                        value={data.brokerDispatchName}
+                        onChange={(e) => setData({...data,brokerDispatchName: e.target.value})}
                     />
                 </Grid>
                 <Grid xs={4} item textAlign='center'>
@@ -44,8 +29,8 @@ export const BrokerPunchin = ({data,setData}) => {
                         required
                         name="phone"
                         fullWidth
-                        value={brokerData.phone}
-                        onChange={handleBrokerChange}
+                        value={data.brokerPhone}
+                        onChange={(e) => setData({...data,brokerPhone:e.target.value})}
                     />
                 </Grid>
                 <Grid xs={4} item textAlign='center'>
@@ -55,8 +40,8 @@ export const BrokerPunchin = ({data,setData}) => {
                         required
                         fullWidth
                         variant="outlined"
-                        value={brokerData.email}
-                        onChange={handleBrokerChange}
+                        value={data.brokerEmail}
+                        onChange={(e) => setData({...data,brokerEmail:e.target.value})}
                     />
                 </Grid>
             </Grid>

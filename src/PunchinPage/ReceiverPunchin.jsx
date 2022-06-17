@@ -1,26 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 import {TextField, Typography, Grid, Box} from "@mui/material";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
 import {DateTimePicker} from "@mui/x-date-pickers/DateTimePicker";
 
-export const ReceiverPunchin = ({data,setData}) => {
-    const [receiverEarlyDate, setReceivEarlyDate] = useState("")
-    const [receiverLateDate, setReceiverLateDate] = useState("")
-
-    const [receiverData, setReceiverData] = useState({
-        warehouseName: "", address: "", city: "", state: "", country: "United States", zipcode: "",
-    });
-    const handleReceiverChange = (e) => {
-        const {name, value} = e.target;
-        setReceiverData({
-            ...receiverData, [name]: value,
-        });
-        setData({...data,receiverData})
-        setData({...data,receiverEarlyDate})
-        setData({...data,receiverLateDate})
-
-    };
+export const ReceiverPunchin = ({data, setData}) => {
     return (
         <Box>
             <Grid xs={12} container>
@@ -36,8 +20,8 @@ export const ReceiverPunchin = ({data,setData}) => {
                         fullWidth
                         name="warehouseName"
                         multiline
-                        value={receiverData.name}
-                        onChange={handleReceiverChange}
+                        value={data.receiverWarehouseName}
+                        onChange={(e) => setData({...data, receiverWarehouseName: e.target.value})}
                     />
                 </Grid>
             </Grid>
@@ -48,8 +32,8 @@ export const ReceiverPunchin = ({data,setData}) => {
                         required
                         fullWidth
                         name="address"
-                        value={receiverData.address}
-                        onChange={handleReceiverChange}
+                        value={data.receiverAddress}
+                        onChange={(e) => setData({...data, receiverAddress: e.target.value})}
                     />
                 </Grid>
                 <Grid xs={6} item>
@@ -58,8 +42,8 @@ export const ReceiverPunchin = ({data,setData}) => {
                         required
                         name="city"
                         fullWidth
-                        value={receiverData.city}
-                        onChange={handleReceiverChange}
+                        value={data.receiverCity}
+                        onChange={(e) => setData({...data, receiverCity: e.target.value})}
                     />
                 </Grid>
                 <Grid xs={12} container>
@@ -69,20 +53,20 @@ export const ReceiverPunchin = ({data,setData}) => {
                             required
                             fullWidth
                             name="state"
-                            value={receiverData.state}
-                            onChange={handleReceiverChange}
+                            value={data.receiverState}
+                            onChange={(e) => setData({...data, receiverState: e.target.value})}
                         />
                     </Grid>
-                <Grid xs={6} item>
-                    <TextField
-                        label="Reciever's ZipCode"
-                        required
-                        fullWidth
-                        name="zipcode"
-                        value={receiverData.zipcode}
-                        onChange={handleReceiverChange}
-                    />
-                </Grid>
+                    <Grid xs={6} item>
+                        <TextField
+                            label="Reciever's ZipCode"
+                            required
+                            fullWidth
+                            name="zipcode"
+                            value={data.receiverZipcode}
+                            onChange={(e) => setData({...data, receiverZipcode: e.target.value})}
+                        />
+                    </Grid>
                 </Grid>
             </Grid>
             <Grid xs={12} container>
@@ -91,16 +75,16 @@ export const ReceiverPunchin = ({data,setData}) => {
                         <Typography variant="h6">Earliest Time</Typography>
                         <DateTimePicker
                             renderInput={(props) => <TextField fullWidth {...props} />}
-                            value={receiverEarlyDate}
-                            onChange={(e) => setReceivEarlyDate(e)}
+                            value={data.receiverEarlyDate}
+                            onChange={(e) => setData({...data, receiverEarlyDate: e})}
                         />
                     </Grid>
                     <Grid item xs={6}>
                         <Typography variant="h6">Latest Time</Typography>
                         <DateTimePicker
                             renderInput={(props) => <TextField fullWidth {...props} />}
-                            value={receiverLateDate}
-                            onChange={(e) => setReceiverLateDate(e)}
+                            value={data.receiverLateDate}
+                            onChange={(e) => setData({...data, receiverLateDate: e})}
                         />
                     </Grid>
                 </LocalizationProvider>
