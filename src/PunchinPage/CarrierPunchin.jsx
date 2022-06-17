@@ -3,13 +3,13 @@ import {Grid, TextField, Typography, Box} from "@mui/material";
 
 export const CarrierPunchin = ({data, setData}) => {
     return (
-        <Box>
+        <Box padding='20px'>
             <Grid xs={12} container>
                 <Grid xs={12} item>
-                    <Typography variant="h4" textAlign='center' fontWeight='bold'>Carrier Info</Typography>
+                    <Typography variant="h4"  sx={{fontWeight:'bold',textAlign:'center',padding:'10px'}}>Carrier Info</Typography>
                 </Grid>
             </Grid>
-            <Grid xs={12} container>
+            <Grid xs={12} container paddingBottom="25px">
                 <Grid xs={12} item>
                     <TextField
                         label="Carrier's Company Name"

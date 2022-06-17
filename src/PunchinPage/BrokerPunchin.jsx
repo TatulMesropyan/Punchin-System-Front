@@ -3,15 +3,15 @@ import {Grid, TextField, Box, Typography} from "@mui/material";
 
 export const BrokerPunchin = ({data,setData}) => {
     return (
-        <Box paddingTop='20px' paddingBottom='20px'>
+        <Box padding='20px'>
             <Grid xs={12} container>
                 <Grid xs={12} item textAlign='center'>
-                    <Typography variant="h4" align="center" fontWeight='bold'>
+                    <Typography variant="h4" sx={{fontWeight:'bold',textAlign:'center',padding:'10px'}}>
                         Broker Info
                     </Typography>
                 </Grid>
             </Grid>
-            <Grid container xs={12} paddingTop='25px'>
+            <Grid container xs={12} >
                 <Grid xs={4} item textAlign='center'>
                     <TextField
                         label="Broker's Name"

@@ -5,6 +5,7 @@ import {MainPunchin} from "./MainPunchin";
 import {ShipperPunchin} from "./ShipperPunchin";
 import {ReceiverPunchin} from "./ReceiverPunchin";
 import {Box, Grid} from "@mui/material";
+import {FreightInfoPunchin} from "./FreightInfoPunchin";
 
 
 export const PunchinPage = ({data,setData}) => {
@@ -13,6 +14,9 @@ export const PunchinPage = ({data,setData}) => {
             <Grid xs={12} container padding='20px'>
                 <Grid xs={12} item>
                     <MainPunchin data={data}  setData={setData}/>
+                </Grid>
+                <Grid xs={12} item>
+                    <FreightInfoPunchin data={data} setData={setData}/>
                 </Grid>
             </Grid>
             <Grid xs={12} container padding='20px'>

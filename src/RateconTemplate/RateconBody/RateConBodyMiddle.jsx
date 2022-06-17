@@ -8,7 +8,7 @@ export const RateConBodyMiddle = ({data}) => {
     }
     return (
         <Box>
-            <Grid xs={12} border='1px solid black' height='100px' container>
+            <Grid xs={12} border='1px solid black' height='100px' item>
                 <Typography fontWeight='bold' textAlign='center' fontSize='30px' paddingTop='20px'>
                     Carrier Info
                 </Typography>

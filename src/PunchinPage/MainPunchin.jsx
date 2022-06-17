@@ -21,13 +21,13 @@ export const MainPunchin = ({data, setData}) => {
         document.title = `Load Number: ${data.loadNumber ? data.loadNumber : "⛔️"}`
     }, [data.loadNumber]);
     return (
-        <Box>
-            <Grid container xs={12} paddingBottom='20px'>
+        <Box padding='20px'>
+            <Grid container xs={12}>
                 <Grid item xs={12} textAlign='center'>
-                    <Typography variant="h4" fontWeight='bold'>Load Creating Date</Typography>
+                    <Typography variant="h4"  sx={{fontWeight:'bold',textAlign:'center',padding:'10px'}}>Load Creating Date</Typography>
                 </Grid>
             </Grid>
-            <Grid xs={12} container>
+            <Grid xs={12} container paddingBottom='20px'>
                 <Grid xs={6} item>
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DatePicker
@@ -52,7 +52,7 @@ export const MainPunchin = ({data, setData}) => {
                     />
                 </Grid>
             </Grid>
-            <Grid container xs={12}>
+            <Grid container xs={12} paddingBottom='20px'>
                 <Grid xs={6} item>
                     <TextField
                         label="Carrier's Rate"
@@ -77,7 +77,7 @@ export const MainPunchin = ({data, setData}) => {
                     />
                 </Grid>
             </Grid>
-            <Grid item xs={12} textAlign='center'>
+            <Grid item xs={12} paddingBottom='20px'>
                 <NetPayCalculator/>
             </Grid>
         </Box>
