@@ -6,36 +6,33 @@ import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
 
 export const ShipperPunchin = ({data, setData}) => {
     return (
-        <Box>
+        <Box padding='20px'>
             <Grid xs={12} container>
                 <Grid xs={12} item>
-                    <Typography variant="h4" align="center" fontWeight='bold'>
+                    <Typography variant="h4" sx={{fontWeight:'bold',textAlign:'center',padding:'10px'}}>
                         Shipper Info
                     </Typography>
                 </Grid>
             </Grid>
             <Grid xs={12} container>
-                <Grid xs={12} item>
+                <Grid xs={12} item paddingBottom='20px'>
                     <TextField
                         label="Shipper's Name"
                         required
                         multiline
                         fullWidth
-                        sx={{paddingBottom: '10px'}}
-                        name="warehouseName"
                         value={data.shipperWarehouseName}
                         onChange={(e) => setData({...data, shipperWarehouseName: e.target.value})}
                     />
                 </Grid>
             </Grid>
-            <Grid xs={12} container>
+            <Grid xs={12} container paddingBottom='20px'>
                 <Grid xs={6} item>
                     <TextField
                         label="Shipper's Address"
                         required
                         fullWidth
                         multiline
-                        name="address"
                         value={data.shipperAddress}
                         onChange={(e) => setData({...data, shipperAddress: e.target.value})}
                     />
@@ -44,20 +41,17 @@ export const ShipperPunchin = ({data, setData}) => {
                     <TextField
                         label="Shipper's City"
                         required
-                        name="city"
                         fullWidth
                         value={data.shipperCity}
                         onChange={(e) => setData({...data, shipperCity: e.target.value})}
                     />
                 </Grid>
-                <Grid xs={12} container>
+                <Grid xs={12} container paddingTop='20px'>
                     <Grid xs={6} item>
                         <TextField
                             label="Shipper's State"
                             required
                             fullWidth
-                            sx={{paddingBottom: '10px'}}
-                            name="state"
                             value={data.shipperState}
                             onChange={(e) => setData({...data, shipperState: e.target.value})}
                         />

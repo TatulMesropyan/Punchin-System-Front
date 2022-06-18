@@ -4,7 +4,7 @@ import {Box, Grid, Typography} from "@mui/material";
 export const RateConBodyLower = ({data}) => {
     return (
         <Box sx={{border: '1px solid black'}}>
-            <Grid container xs={12} paddingBottom='15px' border='1px solid black' minHeight='100px'>
+            <Grid item xs={12} paddingBottom='15px' border='1px solid black' minHeight='100px'>
                 <Typography fontWeight='bold' textAlign='center' fontSize='30px' paddingTop='20px'>
                     Shipper Info
                 </Typography>
@@ -16,7 +16,7 @@ export const RateConBodyLower = ({data}) => {
                     <span style={{
                         fontSize: '20px',
                         fontWeight: 'bold'
-                    }} >`${data.shipperCity}, ${data.shipperState} ${data.shipperZipCode}`</span>
+                    }} >{data.shipperCity}, {data.shipperState} {data.shipperZipCode}</span>
                 </Grid>
                 <Grid xs={4} item textAlign='center'>
                     <span style={{
@@ -28,7 +28,7 @@ export const RateConBodyLower = ({data}) => {
                     <span style={{fontSize: '20px', fontWeight: 'bold'}}>{'Some Comments and PU numbers'}</span>
                 </Grid>
             </Grid>
-            <Grid container xs={12} paddingBottom='15px' border='1px solid black' minHeight='100px'>
+            <Grid item xs={12} paddingBottom='15px' border='1px solid black' minHeight='100px'>
                 <Typography fontWeight='bold' textAlign='center' fontSize='30px' paddingTop='20px'>
                     Receiver Info
                 </Typography>
@@ -40,7 +40,7 @@ export const RateConBodyLower = ({data}) => {
                     <span style={{
                         fontSize: '20px',
                         fontWeight: 'bold'
-                    }}>`${data.receiverCity}, ${data.receiverState} ${data.receiverZipcode}`</span>
+                    }}>{data.receiverCity}, {data.receiverState} {data.receiverZipcode}</span>
                 </Grid>
                 <Grid xs={4} item textAlign='center'>
                     <span style={{

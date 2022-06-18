@@ -4,16 +4,17 @@ import {Box, Grid, Typography} from "@mui/material";
 export const RateconBodyUpper = ({data}) => {
     return (
         <Box>
-            <Grid minHeight='100px' container xs={12} border='1px solid black' height='100px'>
+            <Grid minHeight='100px' item xs={12} border='1px solid black' height='100px'>
                 <Typography fontWeight='bold' textAlign='center' fontSize='30px' paddingTop='20px'>
                     Load Details
                 </Typography>
             </Grid>
             <Grid xs={12} container height='35px'>
-                <Grid xs={3}  item border='1px solid black'>Weight:{'44000'}lbs</Grid>
-                <Grid xs={3}  item border='1px solid black'>Commodity:{'Foam'}</Grid>
-                <Grid xs={3}  item sx={{color: 'red',border:'1px solid black'}} >Temperature:{'40F'}</Grid>
-                <Grid xs={3} item  border='1px solid black'>Truck Type:{'53FT Van'}</Grid>
+                <Grid xs={3} paddingTop='8px' item border='1px solid black'>Weight:{data.freightWeight}lbs</Grid>
+                <Grid xs={3} paddingTop='8px' item border='1px solid black'>Commodity:{data.freightCommodity}</Grid>
+                <Grid xs={3} paddingTop='8px' item
+                      sx={{color: 'red', border: '1px solid black'}}>Temperature:{data.freightTemperature}</Grid>
+                <Grid xs={3} paddingTop='8px' item border='1px solid black'>Truck Type:{data.truckType}</Grid>
             </Grid>
             <Grid xs={12} container sx={{border: '1px solid black', height: '150px'}}>
                 <Grid item xs={4} border='1px solid black'>

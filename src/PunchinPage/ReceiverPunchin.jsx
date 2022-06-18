@@ -6,13 +6,13 @@ import {DateTimePicker} from "@mui/x-date-pickers/DateTimePicker";
 
 export const ReceiverPunchin = ({data, setData}) => {
     return (
-        <Box>
+        <Box padding='20px'>
             <Grid xs={12} container>
                 <Grid xs={12} item>
-                    <Typography variant="h4" fontWeight='bold' textAlign='center'>Receiver Info</Typography>
+                    <Typography variant="h4" sx={{fontWeight:'bold',textAlign:'center',padding:'10px'}}>Receiver Info</Typography>
                 </Grid>
             </Grid>
-            <Grid container xs={12}>
+            <Grid container xs={12} paddingBottom="25px">
                 <Grid item xs={12}>
                     <TextField
                         label="Reciever's Name"
@@ -25,7 +25,7 @@ export const ReceiverPunchin = ({data, setData}) => {
                     />
                 </Grid>
             </Grid>
-            <Grid xs={12} container>
+            <Grid xs={12} container paddingBottom="25px">
                 <Grid xs={6} item>
                     <TextField
                         label="Reciever's Address"
@@ -46,13 +46,12 @@ export const ReceiverPunchin = ({data, setData}) => {
                         onChange={(e) => setData({...data, receiverCity: e.target.value})}
                     />
                 </Grid>
-                <Grid xs={12} container>
+                <Grid xs={12} container paddingTop="25px">
                     <Grid xs={6} item>
                         <TextField
                             label="Reciever's State"
                             required
                             fullWidth
-                            name="state"
                             value={data.receiverState}
                             onChange={(e) => setData({...data, receiverState: e.target.value})}
                         />
@@ -62,7 +61,6 @@ export const ReceiverPunchin = ({data, setData}) => {
                             label="Reciever's ZipCode"
                             required
                             fullWidth
-                            name="zipcode"
                             value={data.receiverZipcode}
                             onChange={(e) => setData({...data, receiverZipcode: e.target.value})}
                         />
