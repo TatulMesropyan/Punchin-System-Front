@@ -10,28 +10,28 @@ export const RateconBodyUpper = ({data}) => {
                 </Typography>
             </Grid>
             <Grid xs={12} container height='35px'>
-                <Grid xs={3} paddingTop='8px' item border='1px solid black'>Weight:{data.freightWeight}lbs</Grid>
-                <Grid xs={3} paddingTop='8px' item border='1px solid black'>Commodity:{data.freightCommodity}</Grid>
+                <Grid xs={3} paddingTop='8px' item border='1px solid black'>Weight: {data.freightWeight} lbs</Grid>
+                <Grid xs={3} paddingTop='8px' item border='1px solid black'>Commodity: {data.freightCommodity}</Grid>
                 <Grid xs={3} paddingTop='8px' item
-                      sx={{color: 'red', border: '1px solid black'}}>Temperature:{data.freightTemperature}</Grid>
-                <Grid xs={3} paddingTop='8px' item border='1px solid black'>Truck Type:{data.truckType}</Grid>
+                      sx={{color: 'red', border: '1px solid black'}}>Temperature: {data.freightTemperature} °F</Grid>
+                <Grid xs={3} paddingTop='8px' item border='1px solid black'>Truck Type: {data.truckType}</Grid>
             </Grid>
             <Grid xs={12} container sx={{border: '1px solid black', height: '150px'}}>
                 <Grid item xs={4} border='1px solid black'>
                     <Typography variant='h4'>
                         Carrier Pay
                     </Typography>
-                    <span style={{fontSize: '20px'}}>Initial Rate:{data.carrierRate}$</span><br/>
-                    <span style={{fontSize: '20px'}}>QP Charge:{data.carrierFee}%</span><br/>
+                    <span style={{fontSize: '20px'}}>Initial Rate: {data.carrierRate} $</span><br/>
+                    <span style={{fontSize: '20px'}}>QP Charge: {data.carrierFee} %</span><br/>
                     <span
-                        style={{fontSize: '20px'}}>Net Pay:{data.carrierRate - (data.carrierRate * data.carrierFee) / 100}$
+                        style={{fontSize: '20px'}}>Net Pay: { data.carrierRate == 0  ? '' :(data.carrierRate - (data.carrierRate * data.carrierFee) / 100)} $
                     </span><br/>
                 </Grid>
                 <Grid item xs={4} border='1px solid black'>
                     <Typography variant='h4'>
                         Load Number
                     </Typography>
-                    <span style={{fontSize: '26px'}}>#{data.loadNumber}</span>
+                    <span style={{fontSize: '26px'}}># {data.loadNumber}</span>
                 </Grid>
                 <Grid item xs={4} border='1px solid black'>
                     <Typography variant='h4'>
