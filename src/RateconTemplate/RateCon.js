@@ -4,6 +4,7 @@ import {Box, Button, Grid} from "@mui/material";
 
 import RateConHeader from "./RateconHeader/RateConHeader";
 import RateConBody from "./RateconBody/RateConBody";
+import {RateconSecondPage} from "./RateconSecondPage";
 
 import {jsPDF} from "jspdf";
 
@@ -38,6 +39,7 @@ const RateCon = ({data}) => {
             <Grid xs={12} item>
                 <RateConBody data={data}/>
             </Grid>
+            <RateconSecondPage/>
             <Button
                 ref={buttonRef}
                 onClick={generatePdf}
