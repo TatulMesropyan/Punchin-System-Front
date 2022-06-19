@@ -1,5 +1,7 @@
 import React from "react";
+
 import {Grid, TextField, Box, Typography} from "@mui/material";
+
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import {DateTimePicker} from "@mui/x-date-pickers/DateTimePicker";
 import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
@@ -9,7 +11,7 @@ export const ShipperPunchin = ({data, setData}) => {
         <Box padding='20px'>
             <Grid xs={12} container>
                 <Grid xs={12} item>
-                    <Typography variant="h4" sx={{fontWeight:'bold',textAlign:'center',padding:'10px'}}>
+                    <Typography variant="h4" sx={{fontWeight: 'bold', textAlign: 'center', padding: '10px'}}>
                         Shipper Info
                     </Typography>
                 </Grid>
@@ -85,6 +87,31 @@ export const ShipperPunchin = ({data, setData}) => {
                             onChange={(e) => setData({...data, shipperLateDate: e})}
                             value={data.shipperLateDate}
                         />
+                    </Grid>
+                    <Grid xs={12} container paddingTop='20px'>
+                        <Grid xs={6} item>
+                            <TextField
+                                label='PU and PO numbers'
+                                multiline
+                                minRows={3}
+                                maxRows={10}
+                                fullWidth
+                                value={data.shipperPU}
+                                onChange={(e) => setData({...data, shipperPU: e.target.value})}
+                            />
+                        </Grid>
+                        <Grid xs={6} item>
+                            <TextField
+                                label='Additional Comments'
+                                multiline
+                                minRows={3}
+                                maxRows={10}
+                                fullWidth
+                                maxRows={10}
+                                value={data.shipperComment}
+                                onChange={(e) => setData({...data, shipperComment: e.target.value})}
+                            />
+                        </Grid>
                     </Grid>
                 </LocalizationProvider>
             </Grid>

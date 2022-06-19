@@ -1,4 +1,5 @@
 import React from "react";
+
 import {Box, Grid, Typography} from "@mui/material";
 
 export const RateConBodyLower = ({data}) => {
@@ -10,7 +11,7 @@ export const RateConBodyLower = ({data}) => {
                 </Typography>
             </Grid>
             <Grid xs={12} container paddingTop='20px' minHeight='150px'>
-                <Grid xs={4} item textAlign='center'>
+                <Grid xs={3} item textAlign='center'>
                     <span style={{fontSize: '20px', fontWeight: 'bold'}}>{data.shipperWarehouseName}<br/></span>
                     <span style={{fontSize: '20px', fontWeight: 'bold'}}>{data.shipperAddress}<br/></span>
                     <span style={{
@@ -18,14 +19,17 @@ export const RateConBodyLower = ({data}) => {
                         fontWeight: 'bold'
                     }} >{data.shipperCity}, {data.shipperState} {data.shipperZipCode}</span>
                 </Grid>
-                <Grid xs={4} item textAlign='center'>
+                <Grid xs={3} item textAlign='center'>
                     <span style={{
                         fontSize: '20px',
                         fontWeight: 'bold'
                     }}>{data.shipperEarlyDate} - {data.shipperLateDate}</span>
                 </Grid>
-                <Grid xs={4} item textAlign='center'>
-                    <span style={{fontSize: '20px', fontWeight: 'bold'}}>{'Some Comments and PU numbers'}</span>
+                <Grid xs={3} item textAlign='center'>
+                    <span style={{fontSize: '20px', fontWeight: 'bold'}}>{data.shipperPU}</span>
+                </Grid>
+                <Grid xs={3} item textAlign='center'>
+                    <span style={{fontSize: '20px', fontWeight: 'bold'}}>{data.shipperComment}</span>
                 </Grid>
             </Grid>
             <Grid item xs={12} paddingBottom='15px' border='1px solid black' minHeight='100px'>
@@ -34,7 +38,7 @@ export const RateConBodyLower = ({data}) => {
                 </Typography>
             </Grid>
             <Grid xs={12} container paddingTop='20px' minHeight='150px'>
-                <Grid xs={4} item textAlign='center'>
+                <Grid xs={3} item textAlign='center'>
                     <span style={{fontSize: '20px', fontWeight: 'bold', paddingBottom: '2px'}}>{data.receiverWarehouseName}<br/></span>
                     <span style={{fontSize: '20px', fontWeight: 'bold'}}>{data.receiverAddress}<br/></span>
                     <span style={{
@@ -42,14 +46,17 @@ export const RateConBodyLower = ({data}) => {
                         fontWeight: 'bold'
                     }}>{data.receiverCity}, {data.receiverState} {data.receiverZipcode}</span>
                 </Grid>
-                <Grid xs={4} item textAlign='center'>
+                <Grid xs={3} item textAlign='center'>
                     <span style={{
                         fontSize: '20px',
                         fontWeight: 'bold'
                     }}>{data.receiverEarlyDate} - {data.receiverLateDate}</span>
                 </Grid>
-                <Grid xs={4} item textAlign='center'>
-                    <span style={{fontSize: '20px', fontWeight: 'bold'}}>{'Some Comments and PU numbers'}</span>
+                <Grid xs={3} item textAlign='center'>
+                    <span style={{fontSize: '20px', fontWeight: 'bold'}}>{data.receiverPU}</span>
+                </Grid>
+                <Grid xs={3} item textAlign='center'>
+                    <span style={{fontSize: '20px', fontWeight: 'bold'}}>{data.receiverComment}</span>
                 </Grid>
             </Grid>
         </Box>
