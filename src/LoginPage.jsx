@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Avatar, Button, Container, Input, InputLabel } from "@mui/material";
+import { Avatar, Button, Container, Input, InputLabel,Grid } from "@mui/material";
 import "./App.css";
 const LoginPage = () => {
   const handleSubmit = (e) => {
@@ -18,9 +18,9 @@ const LoginPage = () => {
 
   return (
     <form className="login-form">
-      <Container style={{ paddingTop: "65px" }}>
+      <Container sx={{ paddingTop: "65px" }}>
         <h2>Enter Your Login</h2>
-        <div className="login-block">
+        <Grid className="login-block">
           <InputLabel className="login-label">Login</InputLabel>
           <Input
             required
@@ -29,8 +29,8 @@ const LoginPage = () => {
             value={user.name}
             onChange={handleUserName}
           ></Input>
-        </div>
-        <div className="pass-block">
+        </Grid>
+        <Grid className="pass-block">
           <h2>Enter Your Password</h2>
           <InputLabel className="login-label">Password</InputLabel>
           <Input
@@ -41,10 +41,10 @@ const LoginPage = () => {
             onChange={handlePassword}
             id="pass"
           ></Input>
-        </div>
-        <div>
+        </Grid>
+        <Grid>
           <Button onClick={handleSubmit}>Submit</Button>
-        </div>
+        </Grid>
       </Container>
     </form>
   );
