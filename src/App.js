@@ -13,12 +13,12 @@ import {Button, Grid} from "@mui/material";
 function App() {
     const [data, setData] = useState({})
 
-    return (<>
+    return (
+        <>
             <Routes>
                 <Route path='/' exact element={<PunchinPage data={data} setData={setData}/>}/>
                 <Route path='/ratecon' exact element={<RateCon data={data}/>}/>
             </Routes>
-
         </>);
 }
 

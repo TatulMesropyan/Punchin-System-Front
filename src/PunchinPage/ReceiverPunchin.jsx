@@ -19,7 +19,8 @@ export const ReceiverPunchin = ({data, setData}) => {
             <Grid xs={12} container>
                 <Grid xs={12} item>
                     <Typography variant="h4" sx={{fontWeight: 'bold', textAlign: 'center', padding: '10px'}}>Receiver
-                        Info</Typography>
+                        Info
+                    </Typography>
                 </Grid>
             </Grid>
             <Grid container xs={12} paddingBottom="25px">
@@ -101,23 +102,16 @@ export const ReceiverPunchin = ({data, setData}) => {
                                 label='PU and PO numbers'
                                 fullWidth
                                 value={data.receiverPU}
-                                onChange={(e) => setData({...data, receiverPU: [e.target.value]})}
+                                onChange={(e) => setData({...data, receiverPU:e.target.value})}
                             />
                         </Grid>
                         <Grid xs={6} item>
-                            {commentList.map((singleComment,index) =>
-                            <div key={index}>
                                 <TextField
                                     label='Additional Comments'
                                     fullWidth
+                                    onChange={(e) => setData({...data,receiverComment:e.target.value})}
+                                    value={data.receiverComment}
                                 />
-                            </div>
-                            )}
-                            <Button
-                                onClick={AddComment}
-                            >
-                                Add
-                            </Button>
                         </Grid>
                     </Grid>
                 </LocalizationProvider>
