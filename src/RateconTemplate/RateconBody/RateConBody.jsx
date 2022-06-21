@@ -1,5 +1,7 @@
 import React from "react";
+
 import {Box, Grid} from "@mui/material";
+
 import {RateconBodyUpper} from "./RateconBodyUpper";
 import {RateConBodyMiddle} from "./RateConBodyMiddle";
 import {RateConBodyLower} from "./RateConBodyLower";

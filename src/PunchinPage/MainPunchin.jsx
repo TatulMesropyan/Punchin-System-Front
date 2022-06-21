@@ -1,14 +1,13 @@
 import React, {useEffect, useState} from "react";
+
 import {Box, Grid, TextField, Typography} from "@mui/material";
+
 import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import {DatePicker} from "@mui/x-date-pickers";
 
 export const MainPunchin = ({data, setData}) => {
     const [carrierNetPay, setCarrierNetPay] = useState('');
-    const [loadNumberError, setLoadNumberError] = useState('')
-    const [rateError, setRateError] = useState('')
-    const [feeError, setFeeError] = useState('')
 
     const NetPayCalculator = () => {
         if (data.carrierRate && data.carrierFee) {
@@ -34,8 +33,12 @@ export const MainPunchin = ({data, setData}) => {
                             label="Creating Date"
                             renderInput={(props) => <TextField fullWidth {...props} />}
                             required
+                            onChange={(newDateCreating) => {
+                                setData({...data, loadCreatingDate: newDateCreating})
+                            }}
                             value={data.loadCreatingDate}
-                            onChange={(e) => setData({...data, loadCreatingDate: e})}
+                            onBlur={() => console.log(data.loadCreatingDate)}
+                            // onChange={(e) => setData({...data, loadCreatingDate: e})}
                         />
                     </LocalizationProvider>
                 </Grid>
@@ -45,8 +48,6 @@ export const MainPunchin = ({data, setData}) => {
                         required
                         fullWidth
                         variant="outlined"
-                        helperText={loadNumberError}
-                        error={loadNumberError && true}
                         value={data.loadNumber}
                         onChange={(e) => setData({...data, loadNumber: e.target.value})}
                     />
@@ -58,8 +59,6 @@ export const MainPunchin = ({data, setData}) => {
                         label="Carrier's Rate"
                         variant="outlined"
                         required
-                        helperText={rateError}
-                        error={rateError}
                         fullWidth
                         value={data.carrierRate}
                         onChange={(e) => setData({...data, carrierRate: e.target.value})}
@@ -69,8 +68,6 @@ export const MainPunchin = ({data, setData}) => {
                     <TextField
                         label="Carrier pay fee"
                         required
-                        helperText={feeError}
-                        error={feeError}
                         fullWidth
                         value={data.carrierFee}
                         onChange={(e) => setData({...data, carrierFee: e.target.value})}

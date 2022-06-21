@@ -1,8 +1,10 @@
+import React from "react";
+
 import {Box, Grid} from "@mui/material";
+
 import HeaderLeftSide from "./HeaderLeftSide";
 import HeaderRightSide from "./HeaderRightSide";
 import HeaderMiddleSide from "./HeaderMiddleSide";
-import React from "react";
 
 const RateConHeader = ({data}) => {
     return (

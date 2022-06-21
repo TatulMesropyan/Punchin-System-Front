@@ -1,4 +1,5 @@
 import React from "react";
+
 import {Grid, Box, TextField,Typography} from "@mui/material";
 
 export const FreightInfoPunchin = ({data,setData}) => {

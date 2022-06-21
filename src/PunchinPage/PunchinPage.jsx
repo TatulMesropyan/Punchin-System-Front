@@ -1,14 +1,21 @@
 import React from "react";
+
+import {useNavigate} from "react-router";
+
 import {BrokerPunchin} from "./BrokerPunchin";
 import {CarrierPunchin} from "./CarrierPunchin"
 import {MainPunchin} from "./MainPunchin";
 import {ShipperPunchin} from "./ShipperPunchin";
 import {ReceiverPunchin} from "./ReceiverPunchin";
-import {Box, Grid} from "@mui/material";
 import {FreightInfoPunchin} from "./FreightInfoPunchin";
 
+import {Box, Button, Grid} from "@mui/material";
 
 export const PunchinPage = ({data,setData}) => {
+    let navigate = useNavigate()
+    const handleAllData = () => {
+        navigate('/ratecon')
+    }
     return (
         <Box sx={{paddingRight: '100px', paddingLeft: '100px', border: '1px solid black', minHeight: '1000px'}}>
             <Grid xs={12} container padding='20px'>
@@ -38,6 +45,11 @@ export const PunchinPage = ({data,setData}) => {
                 <Grid xs={12} item>
                     <ReceiverPunchin data={data}  setData={setData}/>
                 </Grid>
+            </Grid>
+            <Grid xs={12} item textAlign='center'>
+                <Button variant='contained' sx={{textAlign: 'center'}} onClick={handleAllData}>
+                    Submit
+                </Button>
             </Grid>
         </Box>
 

@@ -10,7 +10,6 @@ import {jsPDF} from "jspdf";
 
 import html2canvas from "html2canvas";
 
-
 const RateCon = ({data}) => {
     const buttonRef = useRef()
     const pdfRef = useRef()
